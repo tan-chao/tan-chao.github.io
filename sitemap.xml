@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://tan-chao.github.io/2015/12/22/mysql-name/</loc>
+    <lastmod>2015-12-22T07:51:10.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://tan-chao.github.io/2014/06/16/ubuntu-12-04-install-openerp-7-0/</loc>
     <lastmod>2015-12-22T06:36:33.000Z</lastmod>
   </url>
@@ -14,11 +19,6 @@
   <url>
     <loc>http://tan-chao.github.io/about/index.html</loc>
     <lastmod>2015-12-16T08:35:21.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://tan-chao.github.io/2015/12/15/mysql-name/</loc>
-    <lastmod>2015-12-15T07:23:14.000Z</lastmod>
   </url>
   
   <url>
