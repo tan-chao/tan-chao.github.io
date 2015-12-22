@@ -1,0 +1,339 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  
+  <title>OutMan の Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+    <meta name="author" content="OutMan">
+  
+  
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="OutMan の Blog">
+<meta property="og:url" content="http://tan-chao.github.io/index.html">
+<meta property="og:site_name" content="OutMan の Blog">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OutMan の Blog">
+<meta name="twitter:description">
+  
+    <link rel="alternate" href="/atom.xml" title="OutMan の Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+<body>
+  <div class="wrapper">
+    <header id="header">
+  <div class="title">
+    <h1><a href="/">OutMan の Blog</a></h1>
+    <p><a href="/">拒绝一切自费活动</a></p>
+  </div>
+  <nav class="nav">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+        <li><a href="/about">About</a></li>
+      
+      
+        <li><a href="/atom.xml">RSS</a></li>
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+  <div class="clearfix"></div>
+</header>
+    <div class="content">
+
+
+
+
+  
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2015/12/17/install-mha/">
+  <time datetime="2015-12-17T03:40:51.000Z">
+    2015-12-17
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title"><a href="/2015/12/17/install-mha/">安装 mha 实现 MySQL 主库高可用</a></h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum localinstall -y mha4mysql-<span class="keyword">node</span><span class="identifier"></span><span class="title">-0</span>.<span class="number">56</span>-<span class="number">0</span>.el6.noarch.rpm</span><br></pre></td></tr></table></figure>
+    
+  </div>
+  <footer class="end-sep">
+    
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+  
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2015/12/15/mysql-name/">
+  <time datetime="2015-12-15T07:23:14.000Z">
+    2015-12-15
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title"><a href="/2015/12/15/mysql-name/">统一数据库表命名方式</a></h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>所有数据库名以 <code>dbname_</code> 打头，库名、表名必须使用下划线分割开，全部用小写字母，表名以库名的首字母缩写作为前缀，如<code>dbname_db</code>库下所有的表都以 <code>tbn</code> 表前缀，以保证该表的全局唯一性。</p>
+<blockquote>
+<p>数据库:<code>dbname_db</code><br>数据表:<code>tbn_info</code></p>
+</blockquote>
+<h3 id="u6267_u884C_SQL__u524D_u786E_u8BA4_u5F71_u54CD_u7684_u6570_u636E_u91CF_u5927_u5C0F"><a href="#u6267_u884C_SQL__u524D_u786E_u8BA4_u5F71_u54CD_u7684_u6570_u636E_u91CF_u5927_u5C0F" class="headerlink" title="执行 SQL 前确认影响的数据量大小"></a>执行 SQL 前确认影响的数据量大小</h3><blockquote>
+<p><code>update</code> <code>delete</code> <code>alter</code> 之前先确认会影响的数据量大小</p>
+</blockquote>
+    
+  </div>
+  <footer class="end-sep">
+    
+      
+        <div class="alignleft">
+          <a href="/2015/12/15/mysql-name/#more" class="more-link">阅读全文</a>
+        </div>
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+  
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2015/12/15/install-pxc/">
+  <time datetime="2015-12-15T05:56:39.000Z">
+    2015-12-15
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title"><a href="/2015/12/15/install-pxc/">PXC（Percona XtraDB Cluster）集群安装</a></h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>Percona XtraDB Cluster 是 MySQL 高可用性和可扩展性的解决方案。Percona Server 是MySQL的改进版本，使用 XtraDB 存储引擎，在功能和性能上较 MySQL 有着很显著的提升，如提升了在高负载情况下的 InnoDB 的性能，Percona XtraDB Cluster 完全兼容 MySQL 和 Percona Server。 </p>
+<h3 id="Percona_XtraDB_Cluster__u63D0_u4F9B_u7684_u7279_u6027_u6709_uFF1A"><a href="#Percona_XtraDB_Cluster__u63D0_u4F9B_u7684_u7279_u6027_u6709_uFF1A" class="headerlink" title="Percona XtraDB Cluster 提供的特性有："></a>Percona XtraDB Cluster 提供的特性有：</h3><ul>
+<li>同步复制，事务要么在所有节点提交或不提交。</li>
+<li>多主复制，可以在任意节点进行写操作。</li>
+<li>在从服务器上并行应用事件，真正意义上的并行复制。</li>
+<li>节点自动配置。</li>
+<li>数据一致性，不再是异步复制。</li>
+<li>每个节点都包含完整的数据副本。</li>
+<li>无需集中管理。可以在任何时间点失去任何节点，但是集群将照常工作。</li>
+<li>应用程序的兼容性：无需更改应用程序。</li>
+</ul>
+    
+  </div>
+  <footer class="end-sep">
+    
+      
+        <div class="alignleft">
+          <a href="/2015/12/15/install-pxc/#more" class="more-link">阅读全文</a>
+        </div>
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+  
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2015/12/15/test-it/">
+  <time datetime="2015-12-15T03:10:54.000Z">
+    2015-12-15
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title"><a href="/2015/12/15/test-it/">Test it</a></h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>一直纠结于哪里写博客，曾用过新浪博客，百度空间，JavaEye，LOFTER，OSChina，cnblogs，CSDN，自搭WordPress，都不满意。再后来也弄过Jekyll和Octopress，觉累不爱。</p>
+<p>直到多看了一眼hexo，这个逼格极高的程序猿写作方式，我喜欢。就连 hexo 的发音都像是 黑客哦 ！如果你跟我一样纠结哪里写博，那就来到GitHub吧，让我们一起hexo！H人希绝对不会让你失望，相信很快hexo就会流行起来。</p>
+    
+  </div>
+  <footer class="end-sep">
+    
+      
+        <div class="alignleft">
+          <a href="/2015/12/15/test-it/#more" class="more-link">阅读全文</a>
+        </div>
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+  
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2015/12/09/hello-world/">
+  <time datetime="2015-12-09T09:06:59.000Z">
+    2015-12-09
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title"><a href="/2015/12/09/hello-world/">Hello World</a></h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>Welcome to <a href="http://hexo.io/">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html">Server</a></p>
+    
+  </div>
+  <footer class="end-sep">
+    
+      
+        <div class="alignleft">
+          <a href="/2015/12/09/hello-world/#more" class="more-link">阅读全文</a>
+        </div>
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+  
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2014/06/16/ubuntu-12-04-install-openerp-7-0/">
+  <time datetime="2014-06-16T06:30:01.000Z">
+    2014-06-16
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title"><a href="/2014/06/16/ubuntu-12-04-install-openerp-7-0/">Ubuntu 12.04 安装 OpenERP 7.0</a></h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>OpenERP是开源的ERP系统，功能丰富，通用性高，扩展性强，它的界面非常漂亮，安装也很简单。OpenERP官方有提供 Ubuntu 软件源，建议系统选择 Ubuntu，这样可以节省不少的时间和工作量。似乎 OpenERP 的开发者是在 Ubuntu 平台下工作的，对 Ubuntu 的支持都好过其它的发行版本，资料也是基于 Ubuntu 来编写的。</p>
+    
+  </div>
+  <footer class="end-sep">
+    
+      
+        <div class="alignleft">
+          <a href="/2014/06/16/ubuntu-12-04-install-openerp-7-0/#more" class="more-link">阅读全文</a>
+        </div>
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+
+</div>
+  </div>
+  <footer id="footer"><div class="copyright">
+  
+  &copy; 2015 <a href="/">OutMan</a>
+  
+</div>
+<div class="theme-copyright">
+  Theme by <a href="https://github.com/orderedlist" target="_blank">orderedlist</a>
+   | 
+  Redesign by <a href="http://heroicyang.com/" target="_blank">Heroic Yang</a>
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/scale.fix.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox();
+  })(jQuery);
+</script>
+
+
+</body>
+</html>

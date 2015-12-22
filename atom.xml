@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[OutMan の Blog]]></title>
+  <subtitle><![CDATA[拒绝一切自费活动]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://tan-chao.github.io/"/>
+  <updated>2015-12-17T03:43:04.000Z</updated>
+  <id>http://tan-chao.github.io/</id>
+  
+  <author>
+    <name><![CDATA[OutMan]]></name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[安装 mha 实现 MySQL 主库高可用]]></title>
+    <link href="http://tan-chao.github.io/2015/12/17/install-mha/"/>
+    <id>http://tan-chao.github.io/2015/12/17/install-mha/</id>
+    <published>2015-12-17T03:40:51.000Z</published>
+    <updated>2015-12-17T03:43:04.000Z</updated>
+    <content type="html"><![CDATA[<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum localinstall -y mha4mysql-<span class="keyword">node</span><span class="identifier"></span><span class="title">-0</span>.<span class="number">56</span>-<span class="number">0</span>.el6.noarch.rpm</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span cla]]>
+    </summary>
+    
+      <category term="mha" scheme="http://tan-chao.github.io/tags/mha/"/>
+    
+      <category term="mysql" scheme="http://tan-chao.github.io/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[统一数据库表命名方式]]></title>
+    <link href="http://tan-chao.github.io/2015/12/15/mysql-name/"/>
+    <id>http://tan-chao.github.io/2015/12/15/mysql-name/</id>
+    <published>2015-12-15T07:23:14.000Z</published>
+    <updated>2015-12-15T07:23:14.000Z</updated>
+    <content type="html"><![CDATA[<p>所有数据库名以 <code>dbname_</code> 打头，库名、表名必须使用下划线分割开，全部用小写字母，表名以库名的首字母缩写作为前缀，如<code>dbname_db</code>库下所有的表都以 <code>tbn</code> 表前缀，以保证该表的全局唯一性。</p>
+<blockquote>
+<p>数据库:<code>dbname_db</code><br>数据表:<code>tbn_info</code></p>
+</blockquote>
+<h3 id="u6267_u884C_SQL__u524D_u786E_u8BA4_u5F71_u54CD_u7684_u6570_u636E_u91CF_u5927_u5C0F"><a href="#u6267_u884C_SQL__u524D_u786E_u8BA4_u5F71_u54CD_u7684_u6570_u636E_u91CF_u5927_u5C0F" class="headerlink" title="执行 SQL 前确认影响的数据量大小"></a>执行 SQL 前确认影响的数据量大小</h3><blockquote>
+<p><code>update</code> <code>delete</code> <code>alter</code> 之前先确认会影响的数据量大小</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="u6267_u884C_SQL__u65F6_u91C7_u7528use__u5BF9_u5E94_u7684_u6570_u636E_u5E93"><a href="#u6267_u884C_SQL__u65F6_u91C7_u7528use__u5BF9_u5E94_u7684_u6570_u636E_u5E93" class="headerlink" title="执行 SQL 时采用<code>use</code> 对应的数据库"></a>执行 SQL 时采用<code>use</code> 对应的数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">use</span> dbname_db;</span>          </span><br><span class="line"><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`tbn_info`</span> </span><br><span class="line"><span class="keyword">ADD</span> <span class="string">`allot_time`</span> <span class="built_in">INT</span>( <span class="number">11</span> ) <span class="keyword">UNSIGNED</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0'</span> <span class="keyword">COMMENT</span> <span class="string">'分配时间'</span> , <span class="keyword">ADD</span> <span class="keyword">INDEX</span> ( <span class="string">`allot_time`</span> );</span></span><br></pre></td></tr></table></figure>
+<h3 id="u6267_u884C_SQL__u65F6_u5728SQL_u8BED_u53E5_u4E2D_u6307_u5B9A_u7684_u6570_u636E_u5E93_uFF08_u6781_u7AEF_u60C5_u51B5_u4E0B_u4F1A_u5F71_u54CD_u540C_u6B65_uFF09"><a href="#u6267_u884C_SQL__u65F6_u5728SQL_u8BED_u53E5_u4E2D_u6307_u5B9A_u7684_u6570_u636E_u5E93_uFF08_u6781_u7AEF_u60C5_u51B5_u4E0B_u4F1A_u5F71_u54CD_u540C_u6B65_uFF09" class="headerlink" title="执行 SQL 时在SQL语句中指定的数据库（极端情况下会影响同步）"></a>执行 SQL 时在SQL语句中指定的数据库（极端情况下会影响同步）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> dbname_db.<span class="string">`tbn_info`</span> </span><br><span class="line"><span class="keyword">ADD</span> <span class="string">`allot_time`</span> <span class="built_in">INT</span>( <span class="number">11</span> ) <span class="keyword">UNSIGNED</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0'</span> <span class="keyword">COMMENT</span> <span class="string">'分配时间'</span> , <span class="keyword">ADD</span> <span class="keyword">INDEX</span> ( <span class="string">`allot_time`</span> );</span></span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>所有数据库名以 <code>dbname_</code> 打头，库名、表名必须使用下划线分割开，全部用小写字母，表名以库名的首字母缩写作为前缀，如<code>dbname_db</code>库下所有的表都以 <code>tbn</code> 表前缀，以保证该表的全局唯一性。</p>
+<blockquote>
+<p>数据库:<code>dbname_db</code><br>数据表:<code>tbn_info</code></p>
+</blockquote>
+<h3 id="u6267_u884C_SQL__u524D_u786E_u8BA4_u5F71_u54CD_u7684_u6570_u636E_u91CF_u5927_u5C0F"><a href="#u6267_u884C_SQL__u524D_u786E_u8BA4_u5F71_u54CD_u7684_u6570_u636E_u91CF_u5927_u5C0F" class="headerlink" title="执行 SQL 前确认影响的数据量大小"></a>执行 SQL 前确认影响的数据量大小</h3><blockquote>
+<p><code>update</code> <code>delete</code> <code>alter</code> 之前先确认会影响的数据量大小</p>
+</blockquote>]]>
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://tan-chao.github.io/tags/mysql/"/>
+    
+      <category term="test" scheme="http://tan-chao.github.io/tags/test/"/>
+    
+      <category term="MySQL" scheme="http://tan-chao.github.io/categories/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[PXC（Percona XtraDB Cluster）集群安装]]></title>
+    <link href="http://tan-chao.github.io/2015/12/15/install-pxc/"/>
+    <id>http://tan-chao.github.io/2015/12/15/install-pxc/</id>
+    <published>2015-12-15T05:56:39.000Z</published>
+    <updated>2015-12-15T07:23:05.000Z</updated>
+    <content type="html"><![CDATA[<p>Percona XtraDB Cluster 是 MySQL 高可用性和可扩展性的解决方案。Percona Server 是MySQL的改进版本，使用 XtraDB 存储引擎，在功能和性能上较 MySQL 有着很显著的提升，如提升了在高负载情况下的 InnoDB 的性能，Percona XtraDB Cluster 完全兼容 MySQL 和 Percona Server。 </p>
+<h3 id="Percona_XtraDB_Cluster__u63D0_u4F9B_u7684_u7279_u6027_u6709_uFF1A"><a href="#Percona_XtraDB_Cluster__u63D0_u4F9B_u7684_u7279_u6027_u6709_uFF1A" class="headerlink" title="Percona XtraDB Cluster 提供的特性有："></a>Percona XtraDB Cluster 提供的特性有：</h3><ul>
+<li>同步复制，事务要么在所有节点提交或不提交。</li>
+<li>多主复制，可以在任意节点进行写操作。</li>
+<li>在从服务器上并行应用事件，真正意义上的并行复制。</li>
+<li>节点自动配置。</li>
+<li>数据一致性，不再是异步复制。</li>
+<li>每个节点都包含完整的数据副本。</li>
+<li>无需集中管理。可以在任何时间点失去任何节点，但是集群将照常工作。</li>
+<li>应用程序的兼容性：无需更改应用程序。</li>
+</ul>
+<a id="more"></a>
+<h3 id="PXC__u540C_u65F6_u4E5F_u6709_u7F3A_u70B9_u5982_u4E0B_uFF1A"><a href="#PXC__u540C_u65F6_u4E5F_u6709_u7F3A_u70B9_u5982_u4E0B_uFF1A" class="headerlink" title="PXC 同时也有缺点如下："></a>PXC 同时也有缺点如下：</h3><ul>
+<li>加入新节点，开销大。需要复制完整的数据。</li>
+<li>不能有效的解决写缩放问题，所有的写操作都将发生在所有节点上。</li>
+<li>有多少个节点就有多少重复的数据。</li>
+</ul>
+<h3 id="PXC_u5B89_u88C5_u73AF_u5883"><a href="#PXC_u5B89_u88C5_u73AF_u5883" class="headerlink" title="PXC安装环境"></a>PXC安装环境</h3><blockquote>
+<p>操作系统: CentOS 6.x 64位 最小化安装</p>
+</blockquote>
+<p>集群最小化要求3个 Node</p>
+<table>
+<thead>
+<tr>
+<th>IP</th>
+<th>主机名</th>
+<th style="text-align:center">Node Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.122.11</td>
+<td>db1.test.com</td>
+<td style="text-align:center">db_01</td>
+</tr>
+<tr>
+<td>192.168.122.12</td>
+<td>db2.test.com</td>
+<td style="text-align:center">db_02</td>
+</tr>
+<tr>
+<td>192.168.122.13</td>
+<td>db3.test.com</td>
+<td style="text-align:center">db_03</td>
+</tr>
+</tbody>
+</table>
+<p>在 DNS 里解析主机名，或者在 host 文件里加入下面的内容</p>
+<blockquote>
+<p>192.168.122.11    db1.test.com<br>192.168.122.12    db2.test.com<br>192.168.122.13    db3.test.com</p>
+</blockquote>
+<p>开放 <code>iptables</code> 端口限制</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#注意只暴露给内网对应的设备</span><br><span class="line">iptables -I INPUT -<span class="tag">p</span> tcp --dport <span class="number">3306</span> -j ACCEPT</span><br><span class="line">iptables -I INPUT -<span class="tag">p</span> tcp --dport <span class="number">4444</span> -j ACCEPT</span><br><span class="line">iptables -I INPUT -<span class="tag">p</span> tcp --dport <span class="number">4567</span> -j ACCEPT</span><br><span class="line"></span><br><span class="line">#记得保存</span><br><span class="line">/etc/init.d/iptables save</span><br></pre></td></tr></table></figure>
+<p>关闭 <code>selinux</code></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setenforce <span class="number">0</span></span><br><span class="line">sed -<span class="tag">i</span> <span class="string">'s/SELINUX=.*/SELINUX=disabled/'</span> /etc/selinux/config</span><br></pre></td></tr></table></figure>
+<h3 id="PXC_u5B89_u88C5_u8FC7_u7A0B"><a href="#PXC_u5B89_u88C5_u8FC7_u7A0B" class="headerlink" title="PXC安装过程"></a>PXC安装过程</h3><p>在每个Node上执行下面的操作</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#安装 epel 源</span></span><br><span class="line">yum install http:<span class="comment">//mirrors.yun-idc.com/epel/6/i386/epel-release-6-8.noarch.rpm</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#安装 percona 官方源</span></span><br><span class="line">yum install http:<span class="comment">//www.percona.com/downloads/percona-release/redhat/0.1-3/percona-release-0.1-3.noarch.rpm</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#这里是安装的<span class="number">5.6</span>，如果要安装<span class="number">5.5</span>把下面的<span class="number">56</span>换成<span class="number">55</span>即可</span></span><br><span class="line">yum install Percona-XtraDB-Cluster-server-<span class="number">56</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#mysql 加入自启动</span></span><br><span class="line">chkconfig --level <span class="number">3</span> mysql on</span><br></pre></td></tr></table></figure>
+<p>启动 <code>db_01</code> 的数据库并创建 sst 用户</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/mysql <span class="operator"><span class="keyword">start</span></span><br><span class="line"></span><br><span class="line">#创建 sst 用户，不能用下面的弱密码</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">'sstuser'</span>@<span class="string">'localhost'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">'password'</span>;</span>    <span class="operator"><span class="keyword">GRANT</span> RELOAD, <span class="keyword">LOCK</span> <span class="keyword">TABLES</span>, <span class="keyword">REPLICATION</span> <span class="keyword">CLIENT</span> <span class="keyword">ON</span> *.* <span class="keyword">TO</span> <span class="string">'sstuser'</span>@<span class="string">'localhost'</span>;</span>          </span><br><span class="line"><span class="operator"><span class="keyword">FLUSH</span> <span class="keyword">PRIVILEGES</span>;</span></span><br></pre></td></tr></table></figure>
+<p>在 <code>db_01</code> 的 my.cnf 里加入以下配置</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">server-id = 1911</span><br><span class="line"><span class="constant">wsrep_provider</span>=/usr/lib64/libgalera_smm.so</span><br><span class="line"><span class="constant">wsrep_cluster_address</span>="gcomm://"</span><br><span class="line"><span class="constant">wsrep_sst_auth</span>="sstuser:password"</span><br><span class="line"><span class="constant">wsrep_provider_options</span>="gcache.size=2G"</span><br><span class="line"><span class="constant">wsrep_cluster_name</span>=Percona</span><br><span class="line"><span class="constant">wsrep_sst_method</span>=xtrabackup-v2</span><br><span class="line"><span class="constant">wsrep_node_name</span>=db_01</span><br><span class="line"><span class="constant">wsrep_slave_threads</span>=4</span><br><span class="line"><span class="constant">binlog_format</span>=ROW</span><br><span class="line">log_slave_updates</span><br><span class="line"><span class="constant">innodb_locks_unsafe_for_binlog</span>=1</span><br><span class="line"><span class="constant">innodb_autoinc_lock_mode</span>=2</span><br><span class="line"><span class="constant">default_storage_engine</span>=InnoDB</span><br></pre></td></tr></table></figure>
+<p>重启 <code>db_01</code> 数据库</p>
+<p><code>/etc/init.d/mysql restart</code></p>
+<p>在其它 Node 的 my.cnf 加下面的配置</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#注意Server-id 应该每个机器不一样</span></span><br><span class="line">server-id = <span class="number">1911</span></span><br><span class="line">wsrep_provider=/usr/lib64/libgalera_smm.so</span><br><span class="line"><span class="preprocessor">#这里指定到db_01的主机名 db1.test.com</span></span><br><span class="line">wsrep_cluster_address=<span class="string">"gcomm://db1.test.com"</span></span><br><span class="line">wsrep_sst_auth=<span class="string">"sstuser:password"</span></span><br><span class="line">wsrep_provider_options=<span class="string">"gcache.size=2G"</span></span><br><span class="line">wsrep_cluster_name=Percona</span><br><span class="line"><span class="preprocessor">#指定SST方式，支持rsync(最快，需要锁表)，mysqldump 和 xtrabackup</span></span><br><span class="line"><span class="preprocessor">#从 <span class="number">5.5</span><span class="number">.33</span>-<span class="number">23.7</span><span class="number">.6</span> 起支持 xtrabackup-v2</span></span><br><span class="line"><span class="preprocessor">#<span class="number">5.6</span> 默认是 xtrabackup-v2 ,可以不配置这上选项，但不能配置为 xtrabackup</span></span><br><span class="line">wsrep_sst_method=xtrabackup-v2</span><br><span class="line"><span class="preprocessor">#节点的名称，每个机器要区别开来</span></span><br><span class="line">wsrep_node_name=db_01</span><br><span class="line">wsrep_slave_threads=<span class="number">4</span></span><br><span class="line">binlog_format=ROW</span><br><span class="line">log_slave_updates</span><br><span class="line">innodb_locks_unsafe_for_binlog=<span class="number">1</span></span><br><span class="line">innodb_autoinc_lock_mode=<span class="number">2</span></span><br><span class="line">default_storage_engine=InnoDB</span><br></pre></td></tr></table></figure>
+<p>启动其它节点的数据库</p>
+<p><code>/etc/init.d/mysql start</code></p>
+<p>iptables 端口</p>
+<p>原因：<br>由于开启了selinux</p>
+<p>解决方法：</p>
+<p>编辑文件<code>/etc/sysconfig/selinux</code></p>
+<p>把SELINUX设为disabled</p>
+<p>重启后就会忽略selinux，或者直接执行命令</p>
+<p><code>setenforce 0</code></p>
+<p>立即生效。</p>
+<h3 id="u6545_u969C_u96C6"><a href="#u6545_u969C_u96C6" class="headerlink" title="故障集"></a>故障集</h3><p>日志显示：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2015</span>-<span class="number">11</span>-<span class="number">06</span> <span class="number">16</span>:<span class="number">53</span>:<span class="number">32</span> <span class="number">2294</span> [Note] <span class="string">WSREP:</span> (dbc8e586, <span class="string">'tcp://0.0.0.0:4567'</span>) listening at <span class="string">tcp:</span><span class="comment">//0.0.0.0:4567</span></span><br><span class="line"><span class="number">2015</span>-<span class="number">11</span>-<span class="number">06</span> <span class="number">16</span>:<span class="number">53</span>:<span class="number">32</span> <span class="number">2294</span> [Note] <span class="string">WSREP:</span> (dbc8e586, <span class="string">'tcp://0.0.0.0:4567'</span>) <span class="string">multicast:</span> , <span class="string">ttl:</span> <span class="number">1</span></span><br><span class="line"><span class="number">2015</span>-<span class="number">11</span>-<span class="number">06</span> <span class="number">16</span>:<span class="number">53</span>:<span class="number">32</span> <span class="number">2294</span> [Note] <span class="string">WSREP:</span> EVS version <span class="number">0</span></span><br><span class="line"><span class="number">2015</span>-<span class="number">11</span>-<span class="number">06</span> <span class="number">16</span>:<span class="number">53</span>:<span class="number">32</span> <span class="number">2294</span> [Note] <span class="string">WSREP:</span> <span class="string">gcomm:</span> connecting to group <span class="string">'Percona'</span>, peer <span class="string">'db1.test.com:'</span></span><br><span class="line"><span class="number">2015</span>-<span class="number">11</span>-<span class="number">06</span> <span class="number">16</span>:<span class="number">53</span>:<span class="number">32</span> <span class="number">2294</span> [ERROR] <span class="string">WSREP:</span> Permission denied</span><br><span class="line"><span class="number">2015</span>-<span class="number">11</span>-<span class="number">06</span> <span class="number">16</span>:<span class="number">53</span>:<span class="number">32</span> <span class="number">2294</span> [ERROR] <span class="string">WSREP:</span> failed to open gcomm backend <span class="string">connection:</span> <span class="number">13</span>: error <span class="keyword">while</span> trying to listen <span class="string">'tcp://0.0.0.0:4567?socket.non_blocking=1'</span>, asio error <span class="string">'Permission denied'</span>: <span class="number">13</span> (Permission denied) at gcomm<span class="regexp">/src/</span>asio_tcp.<span class="string">cpp:</span>listen():<span class="number">783</span></span><br><span class="line"><span class="number">2015</span>-<span class="number">11</span>-<span class="number">06</span> <span class="number">16</span>:<span class="number">53</span>:<span class="number">32</span> <span class="number">2294</span> [ERROR] <span class="string">WSREP:</span> gcs<span class="regexp">/src/</span>gcs_core.<span class="string">cpp:</span>gcs_core_open():<span class="number">206</span>: Failed to open backend <span class="string">connection:</span> -<span class="number">13</span> (Permission denied)</span><br><span class="line"><span class="number">2015</span>-<span class="number">11</span>-<span class="number">06</span> <span class="number">16</span>:<span class="number">53</span>:<span class="number">32</span> <span class="number">2294</span> [ERROR] <span class="string">WSREP:</span> gcs<span class="regexp">/src/</span>gcs.<span class="string">cpp:</span>gcs_open():<span class="number">1379</span>: Failed to open channel <span class="string">'Percona'</span> at <span class="string">'gcomm://db1.test.com'</span>: -<span class="number">13</span> (Permission denied)</span><br><span class="line"><span class="number">2015</span>-<span class="number">11</span>-<span class="number">06</span> <span class="number">16</span>:<span class="number">53</span>:<span class="number">32</span> <span class="number">2294</span> [ERROR] <span class="string">WSREP:</span> gcs connect <span class="string">failed:</span> Permission denied</span><br><span class="line"><span class="number">2015</span>-<span class="number">11</span>-<span class="number">06</span> <span class="number">16</span>:<span class="number">53</span>:<span class="number">32</span> <span class="number">2294</span> [ERROR] <span class="string">WSREP:</span> <span class="string">wsrep:</span>:connect(<span class="string">gcomm:</span><span class="comment">//db1.test.com) failed: 7</span></span><br><span class="line"><span class="number">2015</span>-<span class="number">11</span>-<span class="number">06</span> <span class="number">16</span>:<span class="number">53</span>:<span class="number">32</span> <span class="number">2294</span> [ERROR] Aborting</span><br><span class="line"><span class="number">2015</span>-<span class="number">11</span>-<span class="number">06</span> <span class="number">16</span>:<span class="number">53</span>:<span class="number">32</span> <span class="number">2294</span> [Note] <span class="string">WSREP:</span> Service disconnected.</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>解决方法：<br>关闭 <code>selinux</code></p>
+</blockquote>
+<p>日志显示：</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2015</span>-<span class="number">11</span>-<span class="number">06</span> <span class="number">16</span>:<span class="number">22</span>:<span class="number">33</span> <span class="number">9716</span> [Note] WSREP: REPL Protocols: <span class="number">7</span> (<span class="number">3</span>, <span class="number">2</span>)</span><br><span class="line"><span class="number">2015</span>-<span class="number">11</span>-<span class="number">06</span> <span class="number">16</span>:<span class="number">22</span>:<span class="number">33</span> <span class="number">9716</span> [Note] WSREP: Service thread queue flushed.</span><br><span class="line"><span class="number">2015</span>-<span class="number">11</span>-<span class="number">06</span> <span class="number">16</span>:<span class="number">22</span>:<span class="number">33</span> <span class="number">9716</span> [Note] WSREP: Assign initial position <span class="keyword">for</span> certification: <span class="number">4</span>, protocol version: <span class="number">3</span></span><br><span class="line"><span class="number">2015</span>-<span class="number">11</span>-<span class="number">06</span> <span class="number">16</span>:<span class="number">22</span>:<span class="number">33</span> <span class="number">9716</span> [Note] WSREP: Service thread queue flushed.</span><br><span class="line"><span class="number">2015</span>-<span class="number">11</span>-<span class="number">06</span> <span class="number">16</span>:<span class="number">22</span>:<span class="number">33</span> <span class="number">9716</span> [Warning] WSREP: Failed <span class="keyword">to</span> prepare <span class="keyword">for</span> incremental <span class="keyword">state</span> transfer: Local <span class="keyword">state</span> UUID (<span class="number">00000000</span>-<span class="number">0000</span>-<span class="number">0000</span>-<span class="number">0000</span>-<span class="number">000000000000</span>) does not <span class="built_in">match</span> <span class="keyword">group</span> <span class="keyword">state</span> UUID (<span class="number">0055</span>f119-<span class="number">8434</span>-<span class="number">11</span>e5-b4c5-<span class="number">52</span>dd3f2636cd): <span class="number">1</span> (Operation not permitted) at galera/src/replicator_str.cpp:prepare_for_IST():<span class="number">482</span>. IST will be unavailable.</span><br><span class="line"><span class="number">2015</span>-<span class="number">11</span>-<span class="number">06</span> <span class="number">16</span>:<span class="number">22</span>:<span class="number">33</span> <span class="number">9716</span> [Note] WSREP: Member <span class="number">1.0</span> (db_02) requested <span class="keyword">state</span> transfer <span class="keyword">from</span> '*<span class="literal">any</span>*'. Selected <span class="number">0.0</span> (db_01)(SYNCED) as donor.</span><br><span class="line"><span class="number">2015</span>-<span class="number">11</span>-<span class="number">06</span> <span class="number">16</span>:<span class="number">22</span>:<span class="number">33</span> <span class="number">9716</span> [Note] WSREP: Shifting PRIMARY -&gt; JOINER (TO: <span class="number">4</span>)</span><br><span class="line"><span class="number">2015</span>-<span class="number">11</span>-<span class="number">06</span> <span class="number">16</span>:<span class="number">22</span>:<span class="number">33</span> <span class="number">9716</span> [Note] WSREP: Requesting <span class="keyword">state</span> transfer: success, donor: <span class="number">0</span></span><br><span class="line"><span class="number">2015</span>-<span class="number">11</span>-<span class="number">06</span> <span class="number">16</span>:<span class="number">22</span>:<span class="number">35</span> <span class="number">9716</span> [Note] WSREP: <span class="number">0.0</span> (db_01): State transfer <span class="keyword">to</span> <span class="number">1.0</span> (db_02) complete.</span><br><span class="line"><span class="number">2015</span>-<span class="number">11</span>-<span class="number">06</span> <span class="number">16</span>:<span class="number">22</span>:<span class="number">35</span> <span class="number">9716</span> [Note] WSREP: Member <span class="number">0.0</span> (db_01) synced with <span class="keyword">group</span>.</span><br><span class="line">WSREP_SST: [ERROR] xtrabackup process ended without creating '/var/lib/mysql//xtrabackup_galera_info' (<span class="number">20151106</span> <span class="number">16</span>:<span class="number">22</span>:<span class="number">35.663</span>)</span><br><span class="line">WSREP_SST: [INFO] Contents of datadir (<span class="number">20151106</span> <span class="number">16</span>:<span class="number">22</span>:<span class="number">35.664</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>解决方法：<br>将my.cnf 里的配置 wsrep_sst_method=xtrabackup-v2</p>
+</blockquote>
+<h3 id="PXC_u5C40_u9650_u6027"><a href="#PXC_u5C40_u9650_u6027" class="headerlink" title="PXC局限性"></a>PXC局限性</h3><ol>
+<li>目前的复制仅仅支持InnoDB存储引擎。任何写入其他引擎的表，包括mysql.*表将不会复制。但是DDL语句会被复制的，因此创建用户将会被复制，但是insert into mysql.user…将不会被复制的。</li>
+<li>DELETE操作不支持没有主键的表。没有主键的表在不同的节点顺序将不同，如果执行SELECT…LIMIT… 将出现不同的结果集。</li>
+<li>在多主环境下LOCK/UNLOCK TABLES不支持。以及锁函数GET_LOCK(), RELEASE_LOCK()…</li>
+<li>查询日志不能保存在表中。如果开启查询日志，只能保存到文件中。</li>
+<li>允许最大的事务大小由wsrep_max_ws_rows和wsrep_max_ws_size定义。任何大型操作将被拒绝。如大型的LOAD DATA操作。</li>
+<li>由于集群是乐观的并发控制，事务commit可能在该阶段中止。如果有两个事务向在集群中不同的节点向同一行写入并提交，失败的节点将中止。对于集群级别的中止，集群返回死锁错误代码(Error: 1213 SQLSTATE: 40001 (ER_LOCK_DEADLOCK)).</li>
+<li>XA事务不支持，由于在提交上可能回滚。</li>
+<li>整个集群的写入吞吐量是由最弱的节点限制，如果有一个节点变得缓慢，那么整个集群将是缓慢的。为了稳定的高性能要求，所有的节点应使用统一的硬件。</li>
+<li>集群节点建议最少3个。</li>
+<li>如果DDL语句有问题将破坏集群。</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Percona XtraDB Cluster 是 MySQL 高可用性和可扩展性的解决方案。Percona Server 是MySQL的改进版本，使用 XtraDB 存储引擎，在功能和性能上较 MySQL 有着很显著的提升，如提升了在高负载情况下的 InnoDB 的性能，Percona XtraDB Cluster 完全兼容 MySQL 和 Percona Server。 </p>
+<h3 id="Percona_XtraDB_Cluster__u63D0_u4F9B_u7684_u7279_u6027_u6709_uFF1A"><a href="#Percona_XtraDB_Cluster__u63D0_u4F9B_u7684_u7279_u6027_u6709_uFF1A" class="headerlink" title="Percona XtraDB Cluster 提供的特性有："></a>Percona XtraDB Cluster 提供的特性有：</h3><ul>
+<li>同步复制，事务要么在所有节点提交或不提交。</li>
+<li>多主复制，可以在任意节点进行写操作。</li>
+<li>在从服务器上并行应用事件，真正意义上的并行复制。</li>
+<li>节点自动配置。</li>
+<li>数据一致性，不再是异步复制。</li>
+<li>每个节点都包含完整的数据副本。</li>
+<li>无需集中管理。可以在任何时间点失去任何节点，但是集群将照常工作。</li>
+<li>应用程序的兼容性：无需更改应用程序。</li>
+</ul>]]>
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://tan-chao.github.io/tags/mysql/"/>
+    
+      <category term="percona" scheme="http://tan-chao.github.io/tags/percona/"/>
+    
+      <category term="pxc" scheme="http://tan-chao.github.io/tags/pxc/"/>
+    
+      <category term="MySQL" scheme="http://tan-chao.github.io/categories/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Test it]]></title>
+    <link href="http://tan-chao.github.io/2015/12/15/test-it/"/>
+    <id>http://tan-chao.github.io/2015/12/15/test-it/</id>
+    <published>2015-12-15T03:10:54.000Z</published>
+    <updated>2015-12-15T03:23:02.000Z</updated>
+    <content type="html"><![CDATA[<p>一直纠结于哪里写博客，曾用过新浪博客，百度空间，JavaEye，LOFTER，OSChina，cnblogs，CSDN，自搭WordPress，都不满意。再后来也弄过Jekyll和Octopress，觉累不爱。</p>
+<p>直到多看了一眼hexo，这个逼格极高的程序猿写作方式，我喜欢。就连 hexo 的发音都像是 黑客哦 ！如果你跟我一样纠结哪里写博，那就来到GitHub吧，让我们一起hexo！H人希绝对不会让你失望，相信很快hexo就会流行起来。</p>
+<a id="more"></a>
+<p>hexo出自台湾大学生 tommy351 之手，是一个基于<code>Node.js</code>的静态博客程序，其编译上百篇文字只需要几秒。hexo生成的静态网页可以直接放到GitHub Pages，BAE，SAE等平台上。先看看tommy是如何吐槽Octopress的 →＿→ Hexo颯爽登場 。</p>
+<ul>
+<li>如果你对默认配置满意，只需几个命令便可秒搭一个hexo。</li>
+<li>如果你跟我一样喜欢折腾下，30分钟也足够个性化。</li>
+<li>如果你过于喜欢折腾，可以折腾个把星期，尽情的玩。</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>一直纠结于哪里写博客，曾用过新浪博客，百度空间，JavaEye，LOFTER，OSChina，cnblogs，CSDN，自搭WordPress，都不满意。再后来也弄过Jekyll和Octopress，觉累不爱。</p>
+<p>直到多看了一眼hexo，这个逼格极高的程序猿写作方式，我喜欢。就连 hexo 的发音都像是 黑客哦 ！如果你跟我一样纠结哪里写博，那就来到GitHub吧，让我们一起hexo！H人希绝对不会让你失望，相信很快hexo就会流行起来。</p>]]>
+    
+    </summary>
+    
+      <category term="test" scheme="http://tan-chao.github.io/tags/test/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <link href="http://tan-chao.github.io/2015/12/09/hello-world/"/>
+    <id>http://tan-chao.github.io/2015/12/09/hello-world/</id>
+    <published>2015-12-09T09:06:59.000Z</published>
+    <updated>2015-12-09T09:06:59.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<a id="more"></a>
+<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Welcome to <a href="http://hexo.io/">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html">Server</a></p>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Ubuntu 12.04 安装 OpenERP 7.0]]></title>
+    <link href="http://tan-chao.github.io/2014/06/16/ubuntu-12-04-install-openerp-7-0/"/>
+    <id>http://tan-chao.github.io/2014/06/16/ubuntu-12-04-install-openerp-7-0/</id>
+    <published>2014-06-16T06:30:01.000Z</published>
+    <updated>2015-12-22T06:36:33.000Z</updated>
+    <content type="html"><![CDATA[<p>OpenERP是开源的ERP系统，功能丰富，通用性高，扩展性强，它的界面非常漂亮，安装也很简单。OpenERP官方有提供 Ubuntu 软件源，建议系统选择 Ubuntu，这样可以节省不少的时间和工作量。似乎 OpenERP 的开发者是在 Ubuntu 平台下工作的，对 Ubuntu 的支持都好过其它的发行版本，资料也是基于 Ubuntu 来编写的。</p>
+<a id="more"></a>
+<p>1.添加 OpenERP 官方的 Ubuntu 源并刷新列表</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="keyword">echo</span> <span class="string">"deb http://nightly.openerp.com/7.0/nightly/deb/ ./"</span> &gt;&gt; /etc/apt/sources.<span class="keyword">list</span></span><br><span class="line">sudo apt-<span class="built_in">get</span> <span class="keyword">update</span></span><br></pre></td></tr></table></figure>
+<p>2.安装 OpenERP 用使用的 Postgresql 数据库</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="keyword">get</span> install postgresql</span><br></pre></td></tr></table></figure>
+<p>3.设置 Postgresql 用户信息</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo su postgres</span><br><span class="line"></span><br><span class="line">   createuser openerp</span><br><span class="line">        Shall the new <span class="keyword">role</span> <span class="title">be</span> a superuser? (y/n) y</span><br><span class="line">    psql template1</span><br><span class="line"></span><br><span class="line">     alter <span class="keyword">role</span> <span class="title">openerp</span> with password 'postgres';</span><br></pre></td></tr></table></figure>
+<p>4.安装 OpenERP 需要的 Python 依赖</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="built_in">get</span> install <span class="keyword">python</span>-dateutil <span class="keyword">python</span>-feedparser <span class="keyword">python</span>-gdata <span class="keyword">python</span>-ldap <span class="keyword">python</span>-libxslt1 <span class="keyword">python</span>-lxml <span class="keyword">python</span>-mako <span class="keyword">python</span>-openid <span class="keyword">python</span>-psycopg2 <span class="keyword">python</span>-pybabel <span class="keyword">python</span>-pychart <span class="keyword">python</span>-pydot <span class="keyword">python</span>-pyparsing <span class="keyword">python</span>-reportlab <span class="keyword">python</span>-simplejson <span class="keyword">python</span>-tz <span class="keyword">python</span>-vatnumber <span class="keyword">python</span>-vobject <span class="keyword">python</span>-webdav <span class="keyword">python</span>-werkzeug <span class="keyword">python</span>-xlwt <span class="keyword">python</span>-yaml <span class="keyword">python</span>-zsi</span><br></pre></td></tr></table></figure>
+<p>5.安装 OpenERP</p>
+<p>查看源代码打印帮助</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="keyword">get</span> install openerp</span><br></pre></td></tr></table></figure>
+<p>6.初始化设置</p>
+<p>启动 OpenERP:</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/openerp <span class="literal">start</span></span><br></pre></td></tr></table></figure>
+<p>这个时候就可以通过浏览器打 <code>http://hostname:8069</code> ，打开之前请确保 iptalbes 防火墙已经开放此端口。</p>
+<p>按 WEB 界面的提示设置便可以轻松完成安装。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>OpenERP是开源的ERP系统，功能丰富，通用性高，扩展性强，它的界面非常漂亮，安装也很简单。OpenERP官方有提供 Ubuntu 软件源，建议系统选择 Ubuntu，这样可以节省不少的时间和工作量。似乎 OpenERP 的开发者是在 Ubuntu 平台下工作的，对 Ubuntu 的支持都好过其它的发行版本，资料也是基于 Ubuntu 来编写的。</p>]]>
+    
+    </summary>
+    
+      <category term="openerp" scheme="http://tan-chao.github.io/tags/openerp/"/>
+    
+      <category term="ubuntu" scheme="http://tan-chao.github.io/tags/ubuntu/"/>
+    
+  </entry>
+  
+</feed>
