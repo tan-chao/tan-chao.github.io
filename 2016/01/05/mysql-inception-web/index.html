@@ -10,18 +10,18 @@
     <meta name="author" content="OutMan">
   
   
-    <meta name="description" content="Inception是一款自动化运维的利器，有别与现在各个公司使用的方式，使用Inception，将会给DBA带来最大的便利性，将DBA从繁冗的工作中解放出来，做一些更多的自动化工作，或者从架构方面研究如何更大程度的保证数据库的高可用等等。">
+    <meta name="description" content="Inception是集审核、执行、回滚于一体的一个自动化运维系统，它是根据MySQL代码修改过来的，用它可以很明确的，详细的，准确的审核MySQL的SQL语句，它的工作模式和MySQL完全相同，可以直接使用MySQL客户端来连接，Inception是一款自动化运维的利器，有别与现在各个公司使用的方式，使用Inception，将会给DBA带来最大的便利性，将DBA从繁冗的工作中解放出来，做一些更多的">
   
-  <meta name="description" content="Inception是一款自动化运维的利器，有别与现在各个公司使用的方式，使用Inception，将会给DBA带来最大的便利性，将DBA从繁冗的工作中解放出来，做一些更多的自动化工作，或者从架构方面研究如何更大程度的保证数据库的高可用等等。">
+  <meta name="description" content="Inception是集审核、执行、回滚于一体的一个自动化运维系统，它是根据MySQL代码修改过来的，用它可以很明确的，详细的，准确的审核MySQL的SQL语句，它的工作模式和MySQL完全相同，可以直接使用MySQL客户端来连接，Inception是一款自动化运维的利器，有别与现在各个公司使用的方式，使用Inception，将会给DBA带来最大的便利性，将DBA从繁冗的工作中解放出来，做一些更多的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="试用 MySQL Inception">
 <meta property="og:url" content="http://blog.tanchao.org/2016/01/05/mysql-inception-web/index.html">
 <meta property="og:site_name" content="OutMan の Blog">
-<meta property="og:description" content="Inception是一款自动化运维的利器，有别与现在各个公司使用的方式，使用Inception，将会给DBA带来最大的便利性，将DBA从繁冗的工作中解放出来，做一些更多的自动化工作，或者从架构方面研究如何更大程度的保证数据库的高可用等等。">
-<meta property="og:updated_time" content="2016-01-21T06:13:18.000Z">
+<meta property="og:description" content="Inception是集审核、执行、回滚于一体的一个自动化运维系统，它是根据MySQL代码修改过来的，用它可以很明确的，详细的，准确的审核MySQL的SQL语句，它的工作模式和MySQL完全相同，可以直接使用MySQL客户端来连接，Inception是一款自动化运维的利器，有别与现在各个公司使用的方式，使用Inception，将会给DBA带来最大的便利性，将DBA从繁冗的工作中解放出来，做一些更多的">
+<meta property="og:updated_time" content="2016-01-21T06:39:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="试用 MySQL Inception">
-<meta name="twitter:description" content="Inception是一款自动化运维的利器，有别与现在各个公司使用的方式，使用Inception，将会给DBA带来最大的便利性，将DBA从繁冗的工作中解放出来，做一些更多的自动化工作，或者从架构方面研究如何更大程度的保证数据库的高可用等等。">
+<meta name="twitter:description" content="Inception是集审核、执行、回滚于一体的一个自动化运维系统，它是根据MySQL代码修改过来的，用它可以很明确的，详细的，准确的审核MySQL的SQL语句，它的工作模式和MySQL完全相同，可以直接使用MySQL客户端来连接，Inception是一款自动化运维的利器，有别与现在各个公司使用的方式，使用Inception，将会给DBA带来最大的便利性，将DBA从繁冗的工作中解放出来，做一些更多的">
   
     <link rel="alternate" href="/atom.xml" title="OutMan の Blog" type="application/atom+xml">
   
@@ -76,7 +76,7 @@
   
   <div class="entry">
     
-      <p>Inception是一款自动化运维的利器，有别与现在各个公司使用的方式，使用Inception，将会给DBA带来最大的便利性，将DBA从繁冗的工作中解放出来，做一些更多的自动化工作，或者从架构方面研究如何更大程度的保证数据库的高可用等等。</p>
+      <p>Inception是集审核、执行、回滚于一体的一个自动化运维系统，它是根据MySQL代码修改过来的，用它可以很明确的，详细的，准确的审核MySQL的SQL语句，它的工作模式和MySQL完全相同，可以直接使用MySQL客户端来连接，Inception是一款自动化运维的利器，有别与现在各个公司使用的方式，使用Inception，将会给DBA带来最大的便利性，将DBA从繁冗的工作中解放出来，做一些更多的自动化工作，或者从架构方面研究如何更大程度的保证数据库的高可用等等。</p>
 <a id="more"></a>
 <h3 id="u5B89_u88C5_u4F9D_u8D56_u6761_u4EF6"><a href="#u5B89_u88C5_u4F9D_u8D56_u6761_u4EF6" class="headerlink" title="安装依赖条件"></a>安装依赖条件</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="operator"><span class="keyword">install</span> -y cmake ncurses-devel openssl-devel bison-devel gcc-<span class="keyword">c</span>++</span></span><br></pre></td></tr></table></figure>
 <h3 id="u7F16_u8BD1_inception"><a href="#u7F16_u8BD1_inception" class="headerlink" title="编译 inception"></a>编译 inception</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/mysql-inception/inception.git</span><br><span class="line"><span class="keyword">cd</span> inception</span><br><span class="line">./inception_build.<span class="keyword">sh</span> <span class="keyword">debug</span></span><br></pre></td></tr></table></figure>

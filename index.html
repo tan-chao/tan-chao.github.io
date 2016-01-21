@@ -64,6 +64,43 @@
   <header>
     
       <div class="icon"></div>
+      <a href="/2016/01/21/mysql-name/">
+  <time datetime="2016-01-21T06:57:24.000Z">
+    2016-01-21
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title"><a href="/2016/01/21/mysql-name/">统一数据库表命名方式</a></h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>所有数据库名以 <code>dbname_</code> 打头，库名、表名必须使用下划线分割开，全部用小写字母，表名以库名的首字母缩写作为前缀，如<code>dbname_db</code>库下所有的表都以 <code>tbn</code> 表前缀，以保证该表的全局唯一性。</p>
+    
+  </div>
+  <footer class="end-sep">
+    
+      
+        <div class="alignleft">
+          <a href="/2016/01/21/mysql-name/#more" class="more-link">阅读全文</a>
+        </div>
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+  
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
       <a href="/2016/01/05/mysql-inception-web/">
   <time datetime="2016-01-05T02:52:50.000Z">
     2016-01-05
@@ -79,7 +116,7 @@
   
   <div class="entry">
     
-      <p>Inception是一款自动化运维的利器，有别与现在各个公司使用的方式，使用Inception，将会给DBA带来最大的便利性，将DBA从繁冗的工作中解放出来，做一些更多的自动化工作，或者从架构方面研究如何更大程度的保证数据库的高可用等等。</p>
+      <p>Inception是集审核、执行、回滚于一体的一个自动化运维系统，它是根据MySQL代码修改过来的，用它可以很明确的，详细的，准确的审核MySQL的SQL语句，它的工作模式和MySQL完全相同，可以直接使用MySQL客户端来连接，Inception是一款自动化运维的利器，有别与现在各个公司使用的方式，使用Inception，将会给DBA带来最大的便利性，将DBA从繁冗的工作中解放出来，做一些更多的自动化工作，或者从架构方面研究如何更大程度的保证数据库的高可用等等。</p>
     
   </div>
   <footer class="end-sep">
@@ -87,49 +124,6 @@
       
         <div class="alignleft">
           <a href="/2016/01/05/mysql-inception-web/#more" class="more-link">阅读全文</a>
-        </div>
-      
-      
-    
-    <div class="clearfix"></div>
-  </footer>
-</article>
-
-
-  
-    <article class="post">
-  <header>
-    
-      <div class="icon"></div>
-      <a href="/2015/12/22/mysql-name/">
-  <time datetime="2015-12-22T07:51:10.000Z">
-    2015-12-22
-  </time>
-</a>
-    
-    
-  
-    <h1 class="title"><a href="/2015/12/22/mysql-name/">统一数据库表命名方式</a></h1>
-  
-
-  </header>
-  
-  <div class="entry">
-    
-      <p>所有数据库名以 <code>dbname_</code> 打头，库名、表名必须使用下划线分割开，全部用小写字母，表名以库名的首字母缩写作为前缀，如<code>dbname_db</code>库下所有的表都以 <code>tbn</code> 表前缀，以保证该表的全局唯一性。</p>
-<blockquote>
-<p>数据库:<code>dbname_db</code><br>数据表:<code>tbn_info</code></p>
-</blockquote>
-<h3 id="u6267_u884C_SQL__u524D_u786E_u8BA4_u5F71_u54CD_u7684_u6570_u636E_u91CF_u5927_u5C0F"><a href="#u6267_u884C_SQL__u524D_u786E_u8BA4_u5F71_u54CD_u7684_u6570_u636E_u91CF_u5927_u5C0F" class="headerlink" title="执行 SQL 前确认影响的数据量大小"></a>执行 SQL 前确认影响的数据量大小</h3><blockquote>
-<p><code>update</code> <code>delete</code> <code>alter</code> 之前先确认会影响的数据量大小</p>
-</blockquote>
-    
-  </div>
-  <footer class="end-sep">
-    
-      
-        <div class="alignleft">
-          <a href="/2015/12/22/mysql-name/#more" class="more-link">阅读全文</a>
         </div>
       
       

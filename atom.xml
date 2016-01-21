@@ -4,7 +4,7 @@
   <subtitle><![CDATA[拒绝一切自费活动]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.tanchao.org/"/>
-  <updated>2016-01-21T06:13:18.000Z</updated>
+  <updated>2016-01-21T06:57:24.000Z</updated>
   <id>http://blog.tanchao.org/</id>
   
   <author>
@@ -15,12 +15,42 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[统一数据库表命名方式]]></title>
+    <link href="http://blog.tanchao.org/2016/01/21/mysql-name/"/>
+    <id>http://blog.tanchao.org/2016/01/21/mysql-name/</id>
+    <published>2016-01-21T06:57:24.000Z</published>
+    <updated>2016-01-21T06:57:24.000Z</updated>
+    <content type="html"><![CDATA[<p>所有数据库名以 <code>dbname_</code> 打头，库名、表名必须使用下划线分割开，全部用小写字母，表名以库名的首字母缩写作为前缀，如<code>dbname_db</code>库下所有的表都以 <code>tbn</code> 表前缀，以保证该表的全局唯一性。</p>
+<a id="more"></a>
+<blockquote>
+<p>数据库:<code>dbname_db</code><br>数据表:<code>tbn_info</code></p>
+</blockquote>
+<h3 id="u6267_u884C_SQL__u524D_u786E_u8BA4_u5F71_u54CD_u7684_u6570_u636E_u91CF_u5927_u5C0F"><a href="#u6267_u884C_SQL__u524D_u786E_u8BA4_u5F71_u54CD_u7684_u6570_u636E_u91CF_u5927_u5C0F" class="headerlink" title="执行 SQL 前确认影响的数据量大小"></a>执行 SQL 前确认影响的数据量大小</h3><blockquote>
+<p><code>update</code> <code>delete</code> <code>alter</code> 之前先确认会影响的数据量大小</p>
+</blockquote>
+<h3 id="u6267_u884C_SQL__u65F6_u91C7_u7528use__u5BF9_u5E94_u7684_u6570_u636E_u5E93"><a href="#u6267_u884C_SQL__u65F6_u91C7_u7528use__u5BF9_u5E94_u7684_u6570_u636E_u5E93" class="headerlink" title="执行 SQL 时采用<code>use</code> 对应的数据库"></a>执行 SQL 时采用<code>use</code> 对应的数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">use</span> dbname_db;</span>          </span><br><span class="line"><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`tbn_info`</span> </span><br><span class="line"><span class="keyword">ADD</span> <span class="string">`allot_time`</span> <span class="built_in">INT</span>( <span class="number">11</span> ) <span class="keyword">UNSIGNED</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0'</span> <span class="keyword">COMMENT</span> <span class="string">'分配时间'</span> , <span class="keyword">ADD</span> <span class="keyword">INDEX</span> ( <span class="string">`allot_time`</span> );</span></span><br></pre></td></tr></table></figure>
+<h3 id="u6267_u884C_SQL__u65F6_u5728SQL_u8BED_u53E5_u4E2D_u6307_u5B9A_u7684_u6570_u636E_u5E93_uFF08_u6781_u7AEF_u60C5_u51B5_u4E0B_u4F1A_u5F71_u54CD_u540C_u6B65_uFF09"><a href="#u6267_u884C_SQL__u65F6_u5728SQL_u8BED_u53E5_u4E2D_u6307_u5B9A_u7684_u6570_u636E_u5E93_uFF08_u6781_u7AEF_u60C5_u51B5_u4E0B_u4F1A_u5F71_u54CD_u540C_u6B65_uFF09" class="headerlink" title="执行 SQL 时在SQL语句中指定的数据库（极端情况下会影响同步）"></a>执行 SQL 时在SQL语句中指定的数据库（极端情况下会影响同步）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> dbname_db.<span class="string">`tbn_info`</span> </span><br><span class="line"><span class="keyword">ADD</span> <span class="string">`allot_time`</span> <span class="built_in">INT</span>( <span class="number">11</span> ) <span class="keyword">UNSIGNED</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0'</span> <span class="keyword">COMMENT</span> <span class="string">'分配时间'</span> , <span class="keyword">ADD</span> <span class="keyword">INDEX</span> ( <span class="string">`allot_time`</span> );</span></span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>所有数据库名以 <code>dbname_</code> 打头，库名、表名必须使用下划线分割开，全部用小写字母，表名以库名的首字母缩写作为前缀，如<code>dbname_db</code>库下所有的表都以 <code>tbn</code> 表前缀，以保证该表的全局唯一性。</p>]]>
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://blog.tanchao.org/tags/mysql/"/>
+    
+      <category term="test" scheme="http://blog.tanchao.org/tags/test/"/>
+    
+      <category term="MySQL" scheme="http://blog.tanchao.org/categories/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[试用 MySQL Inception]]></title>
     <link href="http://blog.tanchao.org/2016/01/05/mysql-inception-web/"/>
     <id>http://blog.tanchao.org/2016/01/05/mysql-inception-web/</id>
     <published>2016-01-05T02:52:50.000Z</published>
-    <updated>2016-01-21T06:13:18.000Z</updated>
-    <content type="html"><![CDATA[<p>Inception是一款自动化运维的利器，有别与现在各个公司使用的方式，使用Inception，将会给DBA带来最大的便利性，将DBA从繁冗的工作中解放出来，做一些更多的自动化工作，或者从架构方面研究如何更大程度的保证数据库的高可用等等。</p>
+    <updated>2016-01-21T06:39:37.000Z</updated>
+    <content type="html"><![CDATA[<p>Inception是集审核、执行、回滚于一体的一个自动化运维系统，它是根据MySQL代码修改过来的，用它可以很明确的，详细的，准确的审核MySQL的SQL语句，它的工作模式和MySQL完全相同，可以直接使用MySQL客户端来连接，Inception是一款自动化运维的利器，有别与现在各个公司使用的方式，使用Inception，将会给DBA带来最大的便利性，将DBA从繁冗的工作中解放出来，做一些更多的自动化工作，或者从架构方面研究如何更大程度的保证数据库的高可用等等。</p>
 <a id="more"></a>
 <h3 id="u5B89_u88C5_u4F9D_u8D56_u6761_u4EF6"><a href="#u5B89_u88C5_u4F9D_u8D56_u6761_u4EF6" class="headerlink" title="安装依赖条件"></a>安装依赖条件</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="operator"><span class="keyword">install</span> -y cmake ncurses-devel openssl-devel bison-devel gcc-<span class="keyword">c</span>++</span></span><br></pre></td></tr></table></figure>
 <h3 id="u7F16_u8BD1_inception"><a href="#u7F16_u8BD1_inception" class="headerlink" title="编译 inception"></a>编译 inception</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/mysql-inception/inception.git</span><br><span class="line"><span class="keyword">cd</span> inception</span><br><span class="line">./inception_build.<span class="keyword">sh</span> <span class="keyword">debug</span></span><br></pre></td></tr></table></figure>
@@ -36,49 +66,13 @@
 <p>因为这个 web 界面的工具只是一个测试的 Demo 程序，很多深入的功能还需要自己开发。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>Inception是一款自动化运维的利器，有别与现在各个公司使用的方式，使用Inception，将会给DBA带来最大的便利性，将DBA从繁冗的工作中解放出来，做一些更多的自动化工作，或者从架构方面研究如何更大程度的保证数据库的高可用等等。</p>]]>
+    <![CDATA[<p>Inception是集审核、执行、回滚于一体的一个自动化运维系统，它是根据MySQL代码修改过来的，用它可以很明确的，详细的，准确的审核MySQL的SQL语句，它的工作模式和MySQL完全相同，可以直接使用MySQL客户端来连接，Inception是一款自动化运维的利器，有别与现在各个公司使用的方式，使用Inception，将会给DBA带来最大的便利性，将DBA从繁冗的工作中解放出来，做一些更多的自动化工作，或者从架构方面研究如何更大程度的保证数据库的高可用等等。</p>]]>
     
     </summary>
     
       <category term="inception" scheme="http://blog.tanchao.org/tags/inception/"/>
     
       <category term="mysql" scheme="http://blog.tanchao.org/tags/mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[统一数据库表命名方式]]></title>
-    <link href="http://blog.tanchao.org/2015/12/22/mysql-name/"/>
-    <id>http://blog.tanchao.org/2015/12/22/mysql-name/</id>
-    <published>2015-12-22T07:51:10.000Z</published>
-    <updated>2015-12-22T07:51:10.000Z</updated>
-    <content type="html"><![CDATA[<p>所有数据库名以 <code>dbname_</code> 打头，库名、表名必须使用下划线分割开，全部用小写字母，表名以库名的首字母缩写作为前缀，如<code>dbname_db</code>库下所有的表都以 <code>tbn</code> 表前缀，以保证该表的全局唯一性。</p>
-<blockquote>
-<p>数据库:<code>dbname_db</code><br>数据表:<code>tbn_info</code></p>
-</blockquote>
-<h3 id="u6267_u884C_SQL__u524D_u786E_u8BA4_u5F71_u54CD_u7684_u6570_u636E_u91CF_u5927_u5C0F"><a href="#u6267_u884C_SQL__u524D_u786E_u8BA4_u5F71_u54CD_u7684_u6570_u636E_u91CF_u5927_u5C0F" class="headerlink" title="执行 SQL 前确认影响的数据量大小"></a>执行 SQL 前确认影响的数据量大小</h3><blockquote>
-<p><code>update</code> <code>delete</code> <code>alter</code> 之前先确认会影响的数据量大小</p>
-</blockquote>
-<a id="more"></a>
-<h3 id="u6267_u884C_SQL__u65F6_u91C7_u7528use__u5BF9_u5E94_u7684_u6570_u636E_u5E93"><a href="#u6267_u884C_SQL__u65F6_u91C7_u7528use__u5BF9_u5E94_u7684_u6570_u636E_u5E93" class="headerlink" title="执行 SQL 时采用<code>use</code> 对应的数据库"></a>执行 SQL 时采用<code>use</code> 对应的数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">use</span> dbname_db;</span>          </span><br><span class="line"><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`tbn_info`</span> </span><br><span class="line"><span class="keyword">ADD</span> <span class="string">`allot_time`</span> <span class="built_in">INT</span>( <span class="number">11</span> ) <span class="keyword">UNSIGNED</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0'</span> <span class="keyword">COMMENT</span> <span class="string">'分配时间'</span> , <span class="keyword">ADD</span> <span class="keyword">INDEX</span> ( <span class="string">`allot_time`</span> );</span></span><br></pre></td></tr></table></figure>
-<h3 id="u6267_u884C_SQL__u65F6_u5728SQL_u8BED_u53E5_u4E2D_u6307_u5B9A_u7684_u6570_u636E_u5E93_uFF08_u6781_u7AEF_u60C5_u51B5_u4E0B_u4F1A_u5F71_u54CD_u540C_u6B65_uFF09"><a href="#u6267_u884C_SQL__u65F6_u5728SQL_u8BED_u53E5_u4E2D_u6307_u5B9A_u7684_u6570_u636E_u5E93_uFF08_u6781_u7AEF_u60C5_u51B5_u4E0B_u4F1A_u5F71_u54CD_u540C_u6B65_uFF09" class="headerlink" title="执行 SQL 时在SQL语句中指定的数据库（极端情况下会影响同步）"></a>执行 SQL 时在SQL语句中指定的数据库（极端情况下会影响同步）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> dbname_db.<span class="string">`tbn_info`</span> </span><br><span class="line"><span class="keyword">ADD</span> <span class="string">`allot_time`</span> <span class="built_in">INT</span>( <span class="number">11</span> ) <span class="keyword">UNSIGNED</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0'</span> <span class="keyword">COMMENT</span> <span class="string">'分配时间'</span> , <span class="keyword">ADD</span> <span class="keyword">INDEX</span> ( <span class="string">`allot_time`</span> );</span></span><br></pre></td></tr></table></figure>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>所有数据库名以 <code>dbname_</code> 打头，库名、表名必须使用下划线分割开，全部用小写字母，表名以库名的首字母缩写作为前缀，如<code>dbname_db</code>库下所有的表都以 <code>tbn</code> 表前缀，以保证该表的全局唯一性。</p>
-<blockquote>
-<p>数据库:<code>dbname_db</code><br>数据表:<code>tbn_info</code></p>
-</blockquote>
-<h3 id="u6267_u884C_SQL__u524D_u786E_u8BA4_u5F71_u54CD_u7684_u6570_u636E_u91CF_u5927_u5C0F"><a href="#u6267_u884C_SQL__u524D_u786E_u8BA4_u5F71_u54CD_u7684_u6570_u636E_u91CF_u5927_u5C0F" class="headerlink" title="执行 SQL 前确认影响的数据量大小"></a>执行 SQL 前确认影响的数据量大小</h3><blockquote>
-<p><code>update</code> <code>delete</code> <code>alter</code> 之前先确认会影响的数据量大小</p>
-</blockquote>]]>
-    
-    </summary>
-    
-      <category term="mysql" scheme="http://blog.tanchao.org/tags/mysql/"/>
-    
-      <category term="test" scheme="http://blog.tanchao.org/tags/test/"/>
-    
-      <category term="MySQL" scheme="http://blog.tanchao.org/categories/MySQL/"/>
     
   </entry>
   
