@@ -3,9 +3,9 @@
   <title><![CDATA[OutMan の Blog]]></title>
   <subtitle><![CDATA[拒绝一切自费活动]]></subtitle>
   <link href="/atom.xml" rel="self"/>
-  <link href="http://tan-chao.github.io/"/>
+  <link href="http://blog.tanchao.org/"/>
   <updated>2015-12-22T07:51:10.000Z</updated>
-  <id>http://tan-chao.github.io/</id>
+  <id>http://blog.tanchao.org/</id>
   
   <author>
     <name><![CDATA[OutMan]]></name>
@@ -16,8 +16,8 @@
   
   <entry>
     <title><![CDATA[统一数据库表命名方式]]></title>
-    <link href="http://tan-chao.github.io/2015/12/22/mysql-name/"/>
-    <id>http://tan-chao.github.io/2015/12/22/mysql-name/</id>
+    <link href="http://blog.tanchao.org/2015/12/22/mysql-name/"/>
+    <id>http://blog.tanchao.org/2015/12/22/mysql-name/</id>
     <published>2015-12-22T07:51:10.000Z</published>
     <updated>2015-12-22T07:51:10.000Z</updated>
     <content type="html"><![CDATA[<p>所有数据库名以 <code>dbname_</code> 打头，库名、表名必须使用下划线分割开，全部用小写字母，表名以库名的首字母缩写作为前缀，如<code>dbname_db</code>库下所有的表都以 <code>tbn</code> 表前缀，以保证该表的全局唯一性。</p>
@@ -42,18 +42,18 @@
     
     </summary>
     
-      <category term="mysql" scheme="http://tan-chao.github.io/tags/mysql/"/>
+      <category term="mysql" scheme="http://blog.tanchao.org/tags/mysql/"/>
     
-      <category term="test" scheme="http://tan-chao.github.io/tags/test/"/>
+      <category term="test" scheme="http://blog.tanchao.org/tags/test/"/>
     
-      <category term="MySQL" scheme="http://tan-chao.github.io/categories/MySQL/"/>
+      <category term="MySQL" scheme="http://blog.tanchao.org/categories/MySQL/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[安装 mha 实现 MySQL 主库高可用]]></title>
-    <link href="http://tan-chao.github.io/2015/12/17/install-mha/"/>
-    <id>http://tan-chao.github.io/2015/12/17/install-mha/</id>
+    <link href="http://blog.tanchao.org/2015/12/17/install-mha/"/>
+    <id>http://blog.tanchao.org/2015/12/17/install-mha/</id>
     <published>2015-12-17T03:40:51.000Z</published>
     <updated>2015-12-17T03:43:04.000Z</updated>
     <content type="html"><![CDATA[<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum localinstall -y mha4mysql-<span class="keyword">node</span><span class="identifier"></span><span class="title">-0</span>.<span class="number">56</span>-<span class="number">0</span>.el6.noarch.rpm</span><br></pre></td></tr></table></figure>]]></content>
@@ -61,16 +61,16 @@
     <![CDATA[<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span cla]]>
     </summary>
     
-      <category term="mha" scheme="http://tan-chao.github.io/tags/mha/"/>
+      <category term="mha" scheme="http://blog.tanchao.org/tags/mha/"/>
     
-      <category term="mysql" scheme="http://tan-chao.github.io/tags/mysql/"/>
+      <category term="mysql" scheme="http://blog.tanchao.org/tags/mysql/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[PXC（Percona XtraDB Cluster）集群安装]]></title>
-    <link href="http://tan-chao.github.io/2015/12/15/install-pxc/"/>
-    <id>http://tan-chao.github.io/2015/12/15/install-pxc/</id>
+    <link href="http://blog.tanchao.org/2015/12/15/install-pxc/"/>
+    <id>http://blog.tanchao.org/2015/12/15/install-pxc/</id>
     <published>2015-12-15T05:56:39.000Z</published>
     <updated>2015-12-15T07:23:05.000Z</updated>
     <content type="html"><![CDATA[<p>Percona XtraDB Cluster 是 MySQL 高可用性和可扩展性的解决方案。Percona Server 是MySQL的改进版本，使用 XtraDB 存储引擎，在功能和性能上较 MySQL 有着很显著的提升，如提升了在高负载情况下的 InnoDB 的性能，Percona XtraDB Cluster 完全兼容 MySQL 和 Percona Server。 </p>
@@ -186,20 +186,20 @@
     
     </summary>
     
-      <category term="mysql" scheme="http://tan-chao.github.io/tags/mysql/"/>
+      <category term="mysql" scheme="http://blog.tanchao.org/tags/mysql/"/>
     
-      <category term="percona" scheme="http://tan-chao.github.io/tags/percona/"/>
+      <category term="percona" scheme="http://blog.tanchao.org/tags/percona/"/>
     
-      <category term="pxc" scheme="http://tan-chao.github.io/tags/pxc/"/>
+      <category term="pxc" scheme="http://blog.tanchao.org/tags/pxc/"/>
     
-      <category term="MySQL" scheme="http://tan-chao.github.io/categories/MySQL/"/>
+      <category term="MySQL" scheme="http://blog.tanchao.org/categories/MySQL/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Test it]]></title>
-    <link href="http://tan-chao.github.io/2015/12/15/test-it/"/>
-    <id>http://tan-chao.github.io/2015/12/15/test-it/</id>
+    <link href="http://blog.tanchao.org/2015/12/15/test-it/"/>
+    <id>http://blog.tanchao.org/2015/12/15/test-it/</id>
     <published>2015-12-15T03:10:54.000Z</published>
     <updated>2015-12-15T03:23:02.000Z</updated>
     <content type="html"><![CDATA[<p>一直纠结于哪里写博客，曾用过新浪博客，百度空间，JavaEye，LOFTER，OSChina，cnblogs，CSDN，自搭WordPress，都不满意。再后来也弄过Jekyll和Octopress，觉累不爱。</p>
@@ -218,14 +218,14 @@
     
     </summary>
     
-      <category term="test" scheme="http://tan-chao.github.io/tags/test/"/>
+      <category term="test" scheme="http://blog.tanchao.org/tags/test/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Hello World]]></title>
-    <link href="http://tan-chao.github.io/2015/12/09/hello-world/"/>
-    <id>http://tan-chao.github.io/2015/12/09/hello-world/</id>
+    <link href="http://blog.tanchao.org/2015/12/09/hello-world/"/>
+    <id>http://blog.tanchao.org/2015/12/09/hello-world/</id>
     <published>2015-12-09T09:06:59.000Z</published>
     <updated>2015-12-09T09:06:59.000Z</updated>
     <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
@@ -252,8 +252,8 @@
   
   <entry>
     <title><![CDATA[Ubuntu 12.04 安装 OpenERP 7.0]]></title>
-    <link href="http://tan-chao.github.io/2014/06/16/ubuntu-12-04-install-openerp-7-0/"/>
-    <id>http://tan-chao.github.io/2014/06/16/ubuntu-12-04-install-openerp-7-0/</id>
+    <link href="http://blog.tanchao.org/2014/06/16/ubuntu-12-04-install-openerp-7-0/"/>
+    <id>http://blog.tanchao.org/2014/06/16/ubuntu-12-04-install-openerp-7-0/</id>
     <published>2014-06-16T06:30:01.000Z</published>
     <updated>2015-12-22T06:36:33.000Z</updated>
     <content type="html"><![CDATA[<p>OpenERP是开源的ERP系统，功能丰富，通用性高，扩展性强，它的界面非常漂亮，安装也很简单。OpenERP官方有提供 Ubuntu 软件源，建议系统选择 Ubuntu，这样可以节省不少的时间和工作量。似乎 OpenERP 的开发者是在 Ubuntu 平台下工作的，对 Ubuntu 的支持都好过其它的发行版本，资料也是基于 Ubuntu 来编写的。</p>
@@ -280,9 +280,48 @@
     
     </summary>
     
-      <category term="openerp" scheme="http://tan-chao.github.io/tags/openerp/"/>
+      <category term="openerp" scheme="http://blog.tanchao.org/tags/openerp/"/>
     
-      <category term="ubuntu" scheme="http://tan-chao.github.io/tags/ubuntu/"/>
+      <category term="ubuntu" scheme="http://blog.tanchao.org/tags/ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Cacti 监控平台迁移备忘]]></title>
+    <link href="http://blog.tanchao.org/2011/10/12/cacti-migrate/"/>
+    <id>http://blog.tanchao.org/2011/10/12/cacti-migrate/</id>
+    <published>2011-10-12T08:38:00.000Z</published>
+    <updated>2015-12-22T08:53:42.000Z</updated>
+    <content type="html"><![CDATA[<p>公司用的 Cacti 监控平台已经有些时日了，一直运行很稳定，不过，昨天接到通知要迁移 Cacti 平台到别外的一台新服务器。以初以为直接把 Cacti 的 WEB 文件和数据库同步到新服务器就可以了，在实际操作的过程中发现并不是这样的。</p>
+<a id="more"></a>
+<p>首先配置好新服务器的LNMP环境，并将原来的 Cacti 的WEB文件和 mysql 同步到新的服务器。考虑到服务器的安全因素，我的环境配置脚本默认是把 PHP 的以下函数禁用的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">disable</span>_<span class="built_in">functions</span> = system,<span class="built_in">exec</span>,shell_<span class="built_in">exec</span>,passthru,popen,dl</span><br></pre></td></tr></table></figure>
+<p>Cacti 在读取数据和画图的时候需要 exec() shell_exec() popen() 等函数，果然没有开启，可能会出现不能出图的情况。</p>
+<p>如果新的服务器上的文件目录和之前的不一致，需要在引入 sql 之前编辑修改一下路径。不然有可能出现 Cacti 不能正常调用一些脚本的情况。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vi cacti.sql</span><br><span class="line">:%s<span class="regexp">/\/</span>old\<span class="regexp">/cacti.tanchao.org/\/</span><span class="keyword">new</span>\<span class="regexp">/cacti.tanchao.org/</span>g</span><br></pre></td></tr></table></figure>
+<p>用vi替换的时候注意一下“/”的转义。</p>
+<p>检查一下 Cacti 中的 settings paths 的选项是否和新的服务器上的实际环境一致</p>
+<p><img src="http://7xp8gg.com1.z0.glb.clouddn.com/cacti_setting_paths.jpg" alt=""></p>
+<p>然后把被监控的服务器上的设置改一下，把IP改为新的服务器的</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">vi</span> /etc/snmp/snmpd.<span class="keyword">conf</span></span><br><span class="line"></span><br><span class="line"># First, <span class="built_in">map</span> the community name <span class="string">"public"</span> into <span class="keyword">a</span> <span class="string">"security name"</span></span><br><span class="line"></span><br><span class="line">#       sec.name  <span class="keyword">source</span>          community</span><br><span class="line">com2sec notConfigUser  新的cacti监控服务器的IP  public</span><br><span class="line"></span><br><span class="line">/etc/init.<span class="keyword">d</span>/snmpd restart</span><br></pre></td></tr></table></figure>
+<p>然后向 iptables 添加一条新的记录，让其允许和新的监控服务器通信</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -s 新的cacti监控服务器的IP -<span class="tag">p</span> udp --dport <span class="number">161</span> -j ACCEPT</span><br></pre></td></tr></table></figure>
+<p>最后不要忘记在 crontab 中加定期执行 poller.php</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br><span class="line"></span><br><span class="line"><span class="keyword">*</span>/5 <span class="keyword">*</span> <span class="keyword">*</span> <span class="keyword">*</span> <span class="keyword">*</span> php /new/cacti.tanchao.org/poller.php &gt; /dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+<p>这个时候，新的 Cacti 监控就应该可以正常工作了。</p>
+<p>如果你之前安装有监控 Nginx  的脚本，不要忘记让 perl 支持 LWP::UserAgent ，否则 Nginx 的监控部分会出不来图。</p>
+<p>测试是否已经开启支持：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/new/</span>tanchao.org<span class="regexp">/get_nginx_clients_status.pl http:/</span><span class="regexp">/tanchao.org/</span>nginx_status</span><br></pre></td></tr></table></figure>
+<p>如提示 no (LWP::UserAgent not found) 就说明了 perl 的确是缺少该组件</p>
+<p>两种方法安装支持，第一种编译花的时间比较长，建议使用第二种：</p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#方法一：</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#perl -MCPAN -e shell 一直回车，知道出现cpan&gt;  提示符开始。</span></span><br><span class="line">cpan&gt; install LWP::UserAgent</span><br><span class="line">……………………………………</span><br><span class="line">……………………………………</span><br><span class="line">cpan&gt; exit</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#方法二：（用时比较短）</span></span><br><span class="line">yum install perl-libwww-perl</span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>公司用的 Cacti 监控平台已经有些时日了，一直运行很稳定，不过，昨天接到通知要迁移 Cacti 平台到别外的一台新服务器。以初以为直接把 Cacti 的 WEB 文件和数据库同步到新服务器就可以了，在实际操作的过程中发现并不是这样的。</p>]]>
+    
+    </summary>
+    
+      <category term="cacti" scheme="http://blog.tanchao.org/tags/cacti/"/>
     
   </entry>
   

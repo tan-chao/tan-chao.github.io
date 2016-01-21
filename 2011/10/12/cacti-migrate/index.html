@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  
+  <title>Cacti 监控平台迁移备忘 | OutMan の Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+    <meta name="author" content="OutMan">
+  
+  
+    <meta name="description" content="公司用的 Cacti 监控平台已经有些时日了，一直运行很稳定，不过，昨天接到通知要迁移 Cacti 平台到别外的一台新服务器。以初以为直接把 Cacti 的 WEB 文件和数据库同步到新服务器就可以了，在实际操作的过程中发现并不是这样的。">
+  
+  <meta name="description" content="公司用的 Cacti 监控平台已经有些时日了，一直运行很稳定，不过，昨天接到通知要迁移 Cacti 平台到别外的一台新服务器。以初以为直接把 Cacti 的 WEB 文件和数据库同步到新服务器就可以了，在实际操作的过程中发现并不是这样的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cacti 监控平台迁移备忘">
+<meta property="og:url" content="http://blog.tanchao.org/2011/10/12/cacti-migrate/index.html">
+<meta property="og:site_name" content="OutMan の Blog">
+<meta property="og:description" content="公司用的 Cacti 监控平台已经有些时日了，一直运行很稳定，不过，昨天接到通知要迁移 Cacti 平台到别外的一台新服务器。以初以为直接把 Cacti 的 WEB 文件和数据库同步到新服务器就可以了，在实际操作的过程中发现并不是这样的。">
+<meta property="og:image" content="http://7xp8gg.com1.z0.glb.clouddn.com/cacti_setting_paths.jpg">
+<meta property="og:updated_time" content="2015-12-22T08:53:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cacti 监控平台迁移备忘">
+<meta name="twitter:description" content="公司用的 Cacti 监控平台已经有些时日了，一直运行很稳定，不过，昨天接到通知要迁移 Cacti 平台到别外的一台新服务器。以初以为直接把 Cacti 的 WEB 文件和数据库同步到新服务器就可以了，在实际操作的过程中发现并不是这样的。">
+  
+    <link rel="alternate" href="/atom.xml" title="OutMan の Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+<body>
+  <div class="wrapper">
+    <header id="header">
+  <div class="title">
+    <h1><a href="/">OutMan の Blog</a></h1>
+    <p><a href="/">拒绝一切自费活动</a></p>
+  </div>
+  <nav class="nav">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+        <li><a href="/about">About</a></li>
+      
+      
+        <li><a href="/atom.xml">RSS</a></li>
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+  <div class="clearfix"></div>
+</header>
+    <div class="content"><article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2011/10/12/cacti-migrate/">
+  <time datetime="2011-10-12T08:38:00.000Z">
+    2011-10-12
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title">Cacti 监控平台迁移备忘</h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>公司用的 Cacti 监控平台已经有些时日了，一直运行很稳定，不过，昨天接到通知要迁移 Cacti 平台到别外的一台新服务器。以初以为直接把 Cacti 的 WEB 文件和数据库同步到新服务器就可以了，在实际操作的过程中发现并不是这样的。</p>
+<a id="more"></a>
+<p>首先配置好新服务器的LNMP环境，并将原来的 Cacti 的WEB文件和 mysql 同步到新的服务器。考虑到服务器的安全因素，我的环境配置脚本默认是把 PHP 的以下函数禁用的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">disable</span>_<span class="built_in">functions</span> = system,<span class="built_in">exec</span>,shell_<span class="built_in">exec</span>,passthru,popen,dl</span><br></pre></td></tr></table></figure>
+<p>Cacti 在读取数据和画图的时候需要 exec() shell_exec() popen() 等函数，果然没有开启，可能会出现不能出图的情况。</p>
+<p>如果新的服务器上的文件目录和之前的不一致，需要在引入 sql 之前编辑修改一下路径。不然有可能出现 Cacti 不能正常调用一些脚本的情况。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vi cacti.sql</span><br><span class="line">:%s<span class="regexp">/\/</span>old\<span class="regexp">/cacti.tanchao.org/\/</span><span class="keyword">new</span>\<span class="regexp">/cacti.tanchao.org/</span>g</span><br></pre></td></tr></table></figure>
+<p>用vi替换的时候注意一下“/”的转义。</p>
+<p>检查一下 Cacti 中的 settings paths 的选项是否和新的服务器上的实际环境一致</p>
+<p><img src="http://7xp8gg.com1.z0.glb.clouddn.com/cacti_setting_paths.jpg" alt=""></p>
+<p>然后把被监控的服务器上的设置改一下，把IP改为新的服务器的</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">vi</span> /etc/snmp/snmpd.<span class="keyword">conf</span></span><br><span class="line"></span><br><span class="line"># First, <span class="built_in">map</span> the community name <span class="string">"public"</span> into <span class="keyword">a</span> <span class="string">"security name"</span></span><br><span class="line"></span><br><span class="line">#       sec.name  <span class="keyword">source</span>          community</span><br><span class="line">com2sec notConfigUser  新的cacti监控服务器的IP  public</span><br><span class="line"></span><br><span class="line">/etc/init.<span class="keyword">d</span>/snmpd restart</span><br></pre></td></tr></table></figure>
+<p>然后向 iptables 添加一条新的记录，让其允许和新的监控服务器通信</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -s 新的cacti监控服务器的IP -<span class="tag">p</span> udp --dport <span class="number">161</span> -j ACCEPT</span><br></pre></td></tr></table></figure>
+<p>最后不要忘记在 crontab 中加定期执行 poller.php</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br><span class="line"></span><br><span class="line"><span class="keyword">*</span>/5 <span class="keyword">*</span> <span class="keyword">*</span> <span class="keyword">*</span> <span class="keyword">*</span> php /new/cacti.tanchao.org/poller.php &gt; /dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+<p>这个时候，新的 Cacti 监控就应该可以正常工作了。</p>
+<p>如果你之前安装有监控 Nginx  的脚本，不要忘记让 perl 支持 LWP::UserAgent ，否则 Nginx 的监控部分会出不来图。</p>
+<p>测试是否已经开启支持：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/new/</span>tanchao.org<span class="regexp">/get_nginx_clients_status.pl http:/</span><span class="regexp">/tanchao.org/</span>nginx_status</span><br></pre></td></tr></table></figure>
+<p>如提示 no (LWP::UserAgent not found) 就说明了 perl 的确是缺少该组件</p>
+<p>两种方法安装支持，第一种编译花的时间比较长，建议使用第二种：</p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#方法一：</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#perl -MCPAN -e shell 一直回车，知道出现cpan&gt;  提示符开始。</span></span><br><span class="line">cpan&gt; install LWP::UserAgent</span><br><span class="line">……………………………………</span><br><span class="line">……………………………………</span><br><span class="line">cpan&gt; exit</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#方法二：（用时比较短）</span></span><br><span class="line">yum install perl-libwww-perl</span><br></pre></td></tr></table></figure>
+
+    
+  </div>
+  <footer>
+    
+      
+      
+  <div class="tags">
+    <a class="tags-link" href="/tags/cacti/">cacti</a>
+  </div>
+
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+</div>
+  </div>
+  <footer id="footer"><div class="copyright">
+  
+  &copy; 2015 <a href="/">OutMan</a>
+  
+</div>
+<div class="theme-copyright">
+  Theme by <a href="https://github.com/orderedlist" target="_blank">orderedlist</a>
+   | 
+  Redesign by <a href="http://heroicyang.com/" target="_blank">Heroic Yang</a>
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/scale.fix.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox();
+  })(jQuery);
+</script>
+
+
+</body>
+</html>
