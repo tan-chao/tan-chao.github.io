@@ -21,7 +21,7 @@ body {
   font-weight: 300;
 }
 .wrapper {
-  width: 1024px;
+  width: 800px;
   margin: 0 auto;
   background: #dedede;
   -webkit-border-radius: 8px;
@@ -552,7 +552,7 @@ article footer .tags:before {
   font-size: 1.1em;
 }
 #footer {
-  width: 1024px;
+  width: 800px;
   margin: 20px auto 0;
   padding: 20px 0 0;
   font-size: 0.875em;
