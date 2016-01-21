@@ -223,60 +223,6 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Test it]]></title>
-    <link href="http://blog.tanchao.org/2015/12/15/test-it/"/>
-    <id>http://blog.tanchao.org/2015/12/15/test-it/</id>
-    <published>2015-12-15T03:10:54.000Z</published>
-    <updated>2015-12-15T03:23:02.000Z</updated>
-    <content type="html"><![CDATA[<p>一直纠结于哪里写博客，曾用过新浪博客，百度空间，JavaEye，LOFTER，OSChina，cnblogs，CSDN，自搭WordPress，都不满意。再后来也弄过Jekyll和Octopress，觉累不爱。</p>
-<p>直到多看了一眼hexo，这个逼格极高的程序猿写作方式，我喜欢。就连 hexo 的发音都像是 黑客哦 ！如果你跟我一样纠结哪里写博，那就来到GitHub吧，让我们一起hexo！H人希绝对不会让你失望，相信很快hexo就会流行起来。</p>
-<a id="more"></a>
-<p>hexo出自台湾大学生 tommy351 之手，是一个基于<code>Node.js</code>的静态博客程序，其编译上百篇文字只需要几秒。hexo生成的静态网页可以直接放到GitHub Pages，BAE，SAE等平台上。先看看tommy是如何吐槽Octopress的 →＿→ Hexo颯爽登場 。</p>
-<ul>
-<li>如果你对默认配置满意，只需几个命令便可秒搭一个hexo。</li>
-<li>如果你跟我一样喜欢折腾下，30分钟也足够个性化。</li>
-<li>如果你过于喜欢折腾，可以折腾个把星期，尽情的玩。</li>
-</ul>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>一直纠结于哪里写博客，曾用过新浪博客，百度空间，JavaEye，LOFTER，OSChina，cnblogs，CSDN，自搭WordPress，都不满意。再后来也弄过Jekyll和Octopress，觉累不爱。</p>
-<p>直到多看了一眼hexo，这个逼格极高的程序猿写作方式，我喜欢。就连 hexo 的发音都像是 黑客哦 ！如果你跟我一样纠结哪里写博，那就来到GitHub吧，让我们一起hexo！H人希绝对不会让你失望，相信很快hexo就会流行起来。</p>]]>
-    
-    </summary>
-    
-      <category term="test" scheme="http://blog.tanchao.org/tags/test/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <link href="http://blog.tanchao.org/2015/12/09/hello-world/"/>
-    <id>http://blog.tanchao.org/2015/12/09/hello-world/</id>
-    <published>2015-12-09T09:06:59.000Z</published>
-    <updated>2015-12-09T09:06:59.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<a id="more"></a>
-<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Welcome to <a href="http://hexo.io/">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html">Server</a></p>]]>
-    
-    </summary>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[Ubuntu 12.04 安装 OpenERP 7.0]]></title>
     <link href="http://blog.tanchao.org/2014/06/16/ubuntu-12-04-install-openerp-7-0/"/>
     <id>http://blog.tanchao.org/2014/06/16/ubuntu-12-04-install-openerp-7-0/</id>
@@ -348,6 +294,60 @@
     </summary>
     
       <category term="cacti" scheme="http://blog.tanchao.org/tags/cacti/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Test it]]></title>
+    <link href="http://blog.tanchao.org/2010/01/05/test-it/"/>
+    <id>http://blog.tanchao.org/2010/01/05/test-it/</id>
+    <published>2010-01-05T02:53:50.000Z</published>
+    <updated>2016-01-21T08:00:25.000Z</updated>
+    <content type="html"><![CDATA[<p>一直纠结于哪里写博客，曾用过新浪博客，百度空间，JavaEye，LOFTER，OSChina，cnblogs，CSDN，自搭WordPress，都不满意。再后来也弄过Jekyll和Octopress，觉累不爱。</p>
+<p>直到多看了一眼hexo，这个逼格极高的程序猿写作方式，我喜欢。就连 hexo 的发音都像是 黑客哦 ！如果你跟我一样纠结哪里写博，那就来到GitHub吧，让我们一起hexo！H人希绝对不会让你失望，相信很快hexo就会流行起来。</p>
+<a id="more"></a>
+<p>hexo出自台湾大学生 tommy351 之手，是一个基于<code>Node.js</code>的静态博客程序，其编译上百篇文字只需要几秒。hexo生成的静态网页可以直接放到GitHub Pages，BAE，SAE等平台上。先看看tommy是如何吐槽Octopress的 →＿→ Hexo颯爽登場 。</p>
+<ul>
+<li>如果你对默认配置满意，只需几个命令便可秒搭一个hexo。</li>
+<li>如果你跟我一样喜欢折腾下，30分钟也足够个性化。</li>
+<li>如果你过于喜欢折腾，可以折腾个把星期，尽情的玩。</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>一直纠结于哪里写博客，曾用过新浪博客，百度空间，JavaEye，LOFTER，OSChina，cnblogs，CSDN，自搭WordPress，都不满意。再后来也弄过Jekyll和Octopress，觉累不爱。</p>
+<p>直到多看了一眼hexo，这个逼格极高的程序猿写作方式，我喜欢。就连 hexo 的发音都像是 黑客哦 ！如果你跟我一样纠结哪里写博，那就来到GitHub吧，让我们一起hexo！H人希绝对不会让你失望，相信很快hexo就会流行起来。</p>]]>
+    
+    </summary>
+    
+      <category term="test" scheme="http://blog.tanchao.org/tags/test/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <link href="http://blog.tanchao.org/2010/01/05/hello-world/"/>
+    <id>http://blog.tanchao.org/2010/01/05/hello-world/</id>
+    <published>2010-01-05T02:52:50.000Z</published>
+    <updated>2016-01-21T08:00:04.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<a id="more"></a>
+<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Welcome to <a href="http://hexo.io/">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html">Server</a></p>]]>
+    
+    </summary>
     
   </entry>
   
