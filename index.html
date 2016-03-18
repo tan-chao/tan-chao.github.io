@@ -153,11 +153,15 @@
   
   <div class="entry">
     
-      <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum localinstall -y mha4mysql-<span class="keyword">node</span><span class="identifier"></span><span class="title">-0</span>.<span class="number">56</span>-<span class="number">0</span>.el6.noarch.rpm</span><br></pre></td></tr></table></figure>
+      <p>MHA是一位日本MySQL大牛用Perl写的一套MySQL故障切换方案，来保证数据库系统的高可用.在宕机的时间内（通常10—30秒内），完成故障切换，部署MHA，可避免主从一致性问题，节约购买新服务器的费用，不影响服务器性能，易安装，不改变现有部署。还支持在线切换，从当前运行master切换到一个新的master上面，只需要很短的时间（0.5-2秒内），此时仅仅阻塞写操作，并不影响读操作，便于主机硬件维护。在有高可用，数据一致性要求的系统上，MHA 提供了有用的功能，几乎无间断的满足维护需要。</p>
     
   </div>
   <footer class="end-sep">
     
+      
+        <div class="alignleft">
+          <a href="/2015/12/17/install-mha/#more" class="more-link">阅读全文</a>
+        </div>
       
       
     
