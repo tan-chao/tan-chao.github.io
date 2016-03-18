@@ -163,8 +163,9 @@
     <link href="http://blog.tanchao.org/2015/12/15/install-pxc/"/>
     <id>http://blog.tanchao.org/2015/12/15/install-pxc/</id>
     <published>2015-12-15T05:56:39.000Z</published>
-    <updated>2015-12-15T07:23:05.000Z</updated>
+    <updated>2016-03-18T08:20:58.000Z</updated>
     <content type="html"><![CDATA[<p>Percona XtraDB Cluster 是 MySQL 高可用性和可扩展性的解决方案。Percona Server 是MySQL的改进版本，使用 XtraDB 存储引擎，在功能和性能上较 MySQL 有着很显著的提升，如提升了在高负载情况下的 InnoDB 的性能，Percona XtraDB Cluster 完全兼容 MySQL 和 Percona Server。 </p>
+<a id="more"></a>
 <h3 id="Percona_XtraDB_Cluster__u63D0_u4F9B_u7684_u7279_u6027_u6709_uFF1A"><a href="#Percona_XtraDB_Cluster__u63D0_u4F9B_u7684_u7279_u6027_u6709_uFF1A" class="headerlink" title="Percona XtraDB Cluster 提供的特性有："></a>Percona XtraDB Cluster 提供的特性有：</h3><ul>
 <li>同步复制，事务要么在所有节点提交或不提交。</li>
 <li>多主复制，可以在任意节点进行写操作。</li>
@@ -175,7 +176,6 @@
 <li>无需集中管理。可以在任何时间点失去任何节点，但是集群将照常工作。</li>
 <li>应用程序的兼容性：无需更改应用程序。</li>
 </ul>
-<a id="more"></a>
 <h3 id="PXC__u540C_u65F6_u4E5F_u6709_u7F3A_u70B9_u5982_u4E0B_uFF1A"><a href="#PXC__u540C_u65F6_u4E5F_u6709_u7F3A_u70B9_u5982_u4E0B_uFF1A" class="headerlink" title="PXC 同时也有缺点如下："></a>PXC 同时也有缺点如下：</h3><ul>
 <li>加入新节点，开销大。需要复制完整的数据。</li>
 <li>不能有效的解决写缩放问题，所有的写操作都将发生在所有节点上。</li>
@@ -263,17 +263,7 @@
 </ol>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>Percona XtraDB Cluster 是 MySQL 高可用性和可扩展性的解决方案。Percona Server 是MySQL的改进版本，使用 XtraDB 存储引擎，在功能和性能上较 MySQL 有着很显著的提升，如提升了在高负载情况下的 InnoDB 的性能，Percona XtraDB Cluster 完全兼容 MySQL 和 Percona Server。 </p>
-<h3 id="Percona_XtraDB_Cluster__u63D0_u4F9B_u7684_u7279_u6027_u6709_uFF1A"><a href="#Percona_XtraDB_Cluster__u63D0_u4F9B_u7684_u7279_u6027_u6709_uFF1A" class="headerlink" title="Percona XtraDB Cluster 提供的特性有："></a>Percona XtraDB Cluster 提供的特性有：</h3><ul>
-<li>同步复制，事务要么在所有节点提交或不提交。</li>
-<li>多主复制，可以在任意节点进行写操作。</li>
-<li>在从服务器上并行应用事件，真正意义上的并行复制。</li>
-<li>节点自动配置。</li>
-<li>数据一致性，不再是异步复制。</li>
-<li>每个节点都包含完整的数据副本。</li>
-<li>无需集中管理。可以在任何时间点失去任何节点，但是集群将照常工作。</li>
-<li>应用程序的兼容性：无需更改应用程序。</li>
-</ul>]]>
+    <![CDATA[<p>Percona XtraDB Cluster 是 MySQL 高可用性和可扩展性的解决方案。Percona Server 是MySQL的改进版本，使用 XtraDB 存储引擎，在功能和性能上较 MySQL 有着很显著的提升，如提升了在高负载情况下的 InnoDB 的性能，Percona XtraDB Cluster 完全兼容 MySQL 和 Percona Server。 </p>]]>
     
     </summary>
     
