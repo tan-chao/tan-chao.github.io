@@ -81,11 +81,10 @@
     <link href="http://blog.tanchao.org/2015/12/17/install-mha/"/>
     <id>http://blog.tanchao.org/2015/12/17/install-mha/</id>
     <published>2015-12-17T03:40:51.000Z</published>
-    <updated>2016-03-18T07:44:50.000Z</updated>
+    <updated>2016-03-18T07:49:31.000Z</updated>
     <content type="html"><![CDATA[<p>MHA是一位日本MySQL大牛用Perl写的一套MySQL故障切换方案，来保证数据库系统的高可用.在宕机的时间内（通常10—30秒内），完成故障切换，部署MHA，可避免主从一致性问题，节约购买新服务器的费用，不影响服务器性能，易安装，不改变现有部署。还支持在线切换，从当前运行master切换到一个新的master上面，只需要很短的时间（0.5-2秒内），此时仅仅阻塞写操作，并不影响读操作，便于主机硬件维护。在有高可用，数据一致性要求的系统上，MHA 提供了有用的功能，几乎无间断的满足维护需要。</p>
 <a id="more"></a>
-<p>###测试环境</p>
-<p>操作系统: CentOS 6.x 64位</p>
+<h3 id="u6D4B_u8BD5_u73AF_u5883"><a href="#u6D4B_u8BD5_u73AF_u5883" class="headerlink" title="测试环境"></a>测试环境</h3><p>操作系统: CentOS 6.x 64位</p>
 <table>
 <thead>
 <tr>
@@ -112,34 +111,29 @@
 </tr>
 </tbody>
 </table>
-<p>###准备</p>
-<p>作为前提条件，应先配置MySQL复制，并设置SSH公钥免密码登录。下面以CentOS为例来说明，最好先安装EPEL，不然YUM可能找不到某些软件包。</p>
+<h3 id="u51C6_u5907"><a href="#u51C6_u5907" class="headerlink" title="准备"></a>准备</h3><p>作为前提条件，应先配置MySQL复制，并设置SSH公钥免密码登录。下面以CentOS为例来说明，最好先安装EPEL，不然YUM可能找不到某些软件包。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># ssh-keygen -t rsa  </span></span><br><span class="line"><span class="preprocessor"># ssh-copy-id -i /root/.ssh/id_rsa.pub root@ <span class="number">192.168</span><span class="number">.1</span><span class="number">.100</span></span></span><br><span class="line"><span class="preprocessor"># ssh-copy-id -i /root/.ssh/id_rsa.pub root@ <span class="number">192.168</span><span class="number">.1</span><span class="number">.101</span></span></span><br><span class="line"><span class="preprocessor"># ssh-copy-id -i /root/.ssh/id_rsa.pub root@ <span class="number">192.168</span><span class="number">.1</span><span class="number">.102</span></span></span><br><span class="line"><span class="preprocessor"># ssh-copy-id -i /root/.ssh/id_rsa.pub root@ <span class="number">192.168</span><span class="number">.1</span><span class="number">.103</span></span></span><br></pre></td></tr></table></figure>
 <p>添加管理账号</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">grant</span> all <span class="keyword">privileges</span> <span class="keyword">on</span> *.* <span class="keyword">TO</span> mha@<span class="string">'192.168.1.%'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">'test'</span>;</span>  </span><br><span class="line"><span class="operator"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</span></span><br></pre></td></tr></table></figure>
 <p>下载 MHA 套件：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">mha4mysql-node-0</span><span class="class">.56-0</span><span class="class">.el6</span><span class="class">.noarch</span><span class="class">.rpm</span></span><br><span class="line"><span class="tag">mha4mysql-manager-0</span><span class="class">.56-0</span><span class="class">.el6</span><span class="class">.noarch</span><span class="class">.rpm</span></span><br></pre></td></tr></table></figure>
 <p><a href="https://code.google.com/p/mysql-master-ha/wiki/Downloads?tm=2" target="_blank" rel="external">https://code.google.com/p/mysql-master-ha/wiki/Downloads?tm=2</a></p>
-<p>###安装</p>
-<p>安装Manager：</p>
+<h3 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h3><p>安装Manager：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">yum</span> <span class="tag">localinstall</span> <span class="tag">-y</span> <span class="tag">mha4mysql-node-0</span><span class="class">.56-0</span><span class="class">.el6</span><span class="class">.noarch</span><span class="class">.rpm</span></span><br><span class="line"><span class="tag">yum</span> <span class="tag">localinstall</span> <span class="tag">-y</span> <span class="tag">mha4mysql-manager-0</span><span class="class">.56-0</span><span class="class">.el6</span><span class="class">.noarch</span><span class="class">.rpm</span></span><br></pre></td></tr></table></figure>
 <p>安装Node：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">yum</span> <span class="tag">localinstall</span> <span class="tag">-y</span> <span class="tag">mha4mysql-node-0</span><span class="class">.56-0</span><span class="class">.el6</span><span class="class">.noarch</span><span class="class">.rpm</span></span><br><span class="line"><span class="tag">yum</span> <span class="tag">localinstall</span> <span class="tag">-y</span> <span class="tag">mha4mysql-manager-0</span><span class="class">.56-0</span><span class="class">.el6</span><span class="class">.noarch</span><span class="class">.rpm</span></span><br></pre></td></tr></table></figure>
-<p>###配置</p>
-<p>全局配置文件 (/etc/masterha_default.cnf)</p>
+<h3 id="u914D_u7F6E"><a href="#u914D_u7F6E" class="headerlink" title="配置"></a>配置</h3><p>全局配置文件 (/etc/masterha_default.cnf)</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">[server default]</span></span><br><span class="line"><span class="setting">user=<span class="value">root</span></span></span><br><span class="line"><span class="setting">password=<span class="value">rootpass</span></span></span><br><span class="line"><span class="setting">ssh_user=<span class="value">root</span></span></span><br><span class="line"><span class="setting">master_binlog_dir= <span class="value">/var/lib/mysql</span></span></span><br><span class="line"><span class="setting">remote_workdir=<span class="value">/data/log/masterha</span></span></span><br><span class="line"><span class="setting">secondary_check_script= <span class="value">masterha_secondary_check -s remote_host1 -s remote_host2</span></span></span><br><span class="line"><span class="setting">ping_interval=<span class="value"><span class="number">3</span></span></span></span><br><span class="line"><span class="setting">master_ip_failover_script=<span class="value">/script/masterha/master_ip_failover</span></span></span><br><span class="line"><span class="setting">shutdown_script= <span class="value">/script/masterha/power_manager</span></span></span><br><span class="line"><span class="setting">report_script= <span class="value">/script/masterha/send_master_failover_mail</span></span></span><br></pre></td></tr></table></figure>
 <p><strong>Application configuration file should be written separately. The below example is configuraing app1 (host1-4) and app2 (host11-14).</strong></p>
 <p>应用配置文件 (/etc/app1.cnf)</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">[server default]</span></span><br><span class="line"><span class="setting">manager_workdir=<span class="value">/var/log/masterha/app1</span></span></span><br><span class="line"><span class="setting">manager_log=<span class="value">/var/log/masterha/app1/app1.log</span></span></span><br><span class="line"><span class="title">  </span><br><span class="line">[server1]</span></span><br><span class="line"><span class="setting">hostname=<span class="value">master</span></span></span><br><span class="line"><span class="title">  </span><br><span class="line">[server2]</span></span><br><span class="line"><span class="setting">hostname=<span class="value">slave1</span></span></span><br><span class="line"><span class="setting">candidate_master=<span class="value"><span class="number">1</span></span></span></span><br><span class="line"><span class="title">  </span><br><span class="line">[server3]</span></span><br><span class="line"><span class="setting">hostname=<span class="value">slave2</span></span></span><br><span class="line"><span class="setting">no_master=<span class="value"><span class="number">1</span></span></span></span><br></pre></td></tr></table></figure>
 <p>更多配置参考官方文档:</p>
 <p><a href="https://code.google.com/p/mysql-master-ha/wiki/Configuration" target="_blank" rel="external">MHA配置文件</a><br><a href="https://code.google.com/p/mysql-master-ha/wiki/Parameters" target="_blank" rel="external">MHA支持的参数</a></p>
-<p>###检查</p>
-<p>检查SSH公钥免密码登录：</p>
+<h3 id="u68C0_u67E5"><a href="#u68C0_u67E5" class="headerlink" title="检查"></a>检查</h3><p>检查SSH公钥免密码登录：</p>
 <p><code>masterha_check_ssh --conf=/etc/app1.cnf</code></p>
 <p>检查MySQL复制：  </p>
 <p><code>masterha_check_repl --conf=/etc/app1.cnf</code></p>
-<p>###实战</p>
-<p>首先启动 MHA 进程：</p>
+<h3 id="u5B9E_u6218"><a href="#u5B9E_u6218" class="headerlink" title="实战"></a>实战</h3><p>首先启动 MHA 进程：</p>
 <p><code>nohup masterha_manager --conf=/etc/mha/app1.cnf --remove_dead_master_conf --ignore_last_failover &lt; /dev/null &gt; /var/log/mha/app1/manager.log 2&gt;&amp;1 &amp;</code></p>
 <p>注：视配置情况而定，可能会提示 <code>read_only</code>，<code>relay_log_purge</code> 等警告信息。</p>
 <p>然后检查 MHA 状态：</p>
