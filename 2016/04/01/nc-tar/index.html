@@ -18,7 +18,7 @@
 <meta property="og:url" content="http://blog.tanchao.org/2016/04/01/nc-tar/index.html">
 <meta property="og:site_name" content="OutMan の Blog">
 <meta property="og:description" content="作为运维人员，转移数据到其它服务器可能都已经是家常便饭的事儿了。但转移海量小文件到其它服务器时，传统的几种转移方式就显得心有余而力不足。传统的工具在传输大量小文件时对I/O和网络利用不足，甚至每传一个文件都会花大量的时间来建立网络连接。比如，scp、rsync 等日常用的工具就很难满足这种需求。如果使用 nc + tar 的方式，它几乎可以压榨你所有的网络和I/O资源来转移海量小文件数据。">
-<meta property="og:updated_time" content="2016-04-01T15:57:52.000Z">
+<meta property="og:updated_time" content="2016-04-01T16:00:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nc + tar 内网转移海量小文件">
 <meta name="twitter:description" content="作为运维人员，转移数据到其它服务器可能都已经是家常便饭的事儿了。但转移海量小文件到其它服务器时，传统的几种转移方式就显得心有余而力不足。传统的工具在传输大量小文件时对I/O和网络利用不足，甚至每传一个文件都会花大量的时间来建立网络连接。比如，scp、rsync 等日常用的工具就很难满足这种需求。如果使用 nc + tar 的方式，它几乎可以压榨你所有的网络和I/O资源来转移海量小文件数据。">
@@ -78,7 +78,7 @@
     
       <p>作为运维人员，转移数据到其它服务器可能都已经是家常便饭的事儿了。但转移海量小文件到其它服务器时，传统的几种转移方式就显得心有余而力不足。传统的工具在传输大量小文件时对I/O和网络利用不足，甚至每传一个文件都会花大量的时间来建立网络连接。比如，scp、rsync 等日常用的工具就很难满足这种需求。如果使用 nc + tar 的方式，它几乎可以压榨你所有的网络和I/O资源来转移海量小文件数据。</p>
 <a id="more"></a>
-<p>nc 在接收端的监听方式在 Ubuntu 和 CentOS 略有不同：</p>
+<p>nc 接收端的监听方式在 Ubuntu 和 CentOS 中略有不同：</p>
 <p>Ubuntu:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#接收端</span></span><br><span class="line">nc -l -p <span class="number">18888</span> |tar -C /mnt/a/task -xf -</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#发送端</span></span><br><span class="line">tar cf - ./<span class="number">2010</span>-<span class="number">10</span> | nc <span class="number">192.168</span><span class="number">.1</span><span class="number">.111</span> <span class="number">18888</span></span><br></pre></td></tr></table></figure>
 <p>CentOS:</p>
