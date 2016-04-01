@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  
+  <title>nc + tar 内网转移海量小文件 | OutMan の Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+    <meta name="author" content="OutMan">
+  
+  
+    <meta name="description" content="作为运维人员，转移数据到其它服务器可能都已经是家常便饭的事儿了。但转移海量小文件到其它服务器时，传统的几种转移方式就显得心有余而力不足。由于传统的工具在传输大量小文件时对I/O和网络利用不足，甚至每传一个文件都会花大量的时间来建立网络连接。比如，scp、rsync 等日常用的工具就很难满足这种需求。如果使用 nc + tar 的方式，它几乎可以压榨你所有的网络和I/O资源来转移海量小文件数据。">
+  
+  <meta name="description" content="作为运维人员，转移数据到其它服务器可能都已经是家常便饭的事儿了。但转移海量小文件到其它服务器时，传统的几种转移方式就显得心有余而力不足。由于传统的工具在传输大量小文件时对I/O和网络利用不足，甚至每传一个文件都会花大量的时间来建立网络连接。比如，scp、rsync 等日常用的工具就很难满足这种需求。如果使用 nc + tar 的方式，它几乎可以压榨你所有的网络和I/O资源来转移海量小文件数据。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nc + tar 内网转移海量小文件">
+<meta property="og:url" content="http://blog.tanchao.org/2016/04/01/nc-tar/index.html">
+<meta property="og:site_name" content="OutMan の Blog">
+<meta property="og:description" content="作为运维人员，转移数据到其它服务器可能都已经是家常便饭的事儿了。但转移海量小文件到其它服务器时，传统的几种转移方式就显得心有余而力不足。由于传统的工具在传输大量小文件时对I/O和网络利用不足，甚至每传一个文件都会花大量的时间来建立网络连接。比如，scp、rsync 等日常用的工具就很难满足这种需求。如果使用 nc + tar 的方式，它几乎可以压榨你所有的网络和I/O资源来转移海量小文件数据。">
+<meta property="og:updated_time" content="2016-04-01T15:53:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nc + tar 内网转移海量小文件">
+<meta name="twitter:description" content="作为运维人员，转移数据到其它服务器可能都已经是家常便饭的事儿了。但转移海量小文件到其它服务器时，传统的几种转移方式就显得心有余而力不足。由于传统的工具在传输大量小文件时对I/O和网络利用不足，甚至每传一个文件都会花大量的时间来建立网络连接。比如，scp、rsync 等日常用的工具就很难满足这种需求。如果使用 nc + tar 的方式，它几乎可以压榨你所有的网络和I/O资源来转移海量小文件数据。">
+  
+    <link rel="alternate" href="/atom.xml" title="OutMan の Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+<body>
+  <div class="wrapper">
+    <header id="header">
+  <div class="title">
+    <h1><a href="/">OutMan の Blog</a></h1>
+    <p><a href="/">拒绝一切自费活动</a></p>
+  </div>
+  <nav class="nav">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+        <li><a href="/about">About</a></li>
+      
+      
+        <li><a href="/atom.xml">RSS</a></li>
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+  <div class="clearfix"></div>
+</header>
+    <div class="content"><article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2016/04/01/nc-tar/">
+  <time datetime="2016-04-01T15:30:13.000Z">
+    2016-04-01
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title">nc + tar 内网转移海量小文件</h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>作为运维人员，转移数据到其它服务器可能都已经是家常便饭的事儿了。但转移海量小文件到其它服务器时，传统的几种转移方式就显得心有余而力不足。由于传统的工具在传输大量小文件时对I/O和网络利用不足，甚至每传一个文件都会花大量的时间来建立网络连接。比如，scp、rsync 等日常用的工具就很难满足这种需求。如果使用 nc + tar 的方式，它几乎可以压榨你所有的网络和I/O资源来转移海量小文件数据。</p>
+<a id="more"></a>
+<p>nc 的监控方式在 Ubuntu 和 CentOS 略有不同：</p>
+<p>Ubuntu:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#接收端</span></span><br><span class="line">nc -l -p <span class="number">18888</span> |tar -C /mnt/a/task -xf -</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#发送端</span></span><br><span class="line">tar cf - ./<span class="number">2010</span>-<span class="number">10</span> | nc <span class="number">192.168</span><span class="number">.1</span><span class="number">.111</span> <span class="number">18888</span></span><br></pre></td></tr></table></figure>
+<p>CentOS:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#接收端</span></span><br><span class="line">nc -l <span class="number">18888</span> |tar -C /data -xf -</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#接收端</span></span><br><span class="line">tar cf - ./<span class="number">2010</span>-<span class="number">10</span> | nc <span class="number">192.168</span><span class="number">.1</span><span class="number">.111</span> <span class="number">18888</span></span><br></pre></td></tr></table></figure>
+
+    
+  </div>
+  <footer>
+    
+      
+      
+  <div class="tags">
+    <a class="tags-link" href="/tags/nc/">nc</a>, <a class="tags-link" href="/tags/tar/">tar</a>
+  </div>
+
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+</div>
+  </div>
+  <footer id="footer"><div class="copyright">
+  
+  &copy; 2016 <a href="/">OutMan</a>
+  
+</div>
+<div class="theme-copyright">
+  Theme by <a href="https://github.com/orderedlist" target="_blank">orderedlist</a>
+   | 
+  Redesign by <a href="http://heroicyang.com/" target="_blank">Heroic Yang</a>
+</div>
+<div class="clearfix"></div></footer>
+  <script src="/js/scale.fix.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox();
+  })(jQuery);
+</script>
+
+
+</body>
+</html>

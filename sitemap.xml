@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.tanchao.org/2016/04/01/nc-tar/</loc>
+    <lastmod>2016-04-01T15:53:50.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.tanchao.org/2015/12/15/install-pxc/</loc>
     <lastmod>2016-03-29T09:31:51.000Z</lastmod>
   </url>
