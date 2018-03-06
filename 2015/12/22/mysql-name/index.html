@@ -13,6 +13,7 @@
     <meta name="description" content="所有数据库名以 dbname_ 打头，库名、表名必须使用下划线分割开，全部用小写字母，表名以库名的首字母缩写作为前缀，如dbname_db库下所有的表都以 tbn 表前缀，以保证该表的全局唯一性。">
   
   <meta name="description" content="所有数据库名以 dbname_ 打头，库名、表名必须使用下划线分割开，全部用小写字母，表名以库名的首字母缩写作为前缀，如dbname_db库下所有的表都以 tbn 表前缀，以保证该表的全局唯一性。">
+<meta name="keywords" content="mysql,test">
 <meta property="og:type" content="article">
 <meta property="og:title" content="统一数据库表命名方式">
 <meta property="og:url" content="http://blog.tanchao.org/2015/12/22/mysql-name/index.html">
@@ -28,7 +29,7 @@
   
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
   
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 </head>
@@ -81,11 +82,11 @@
 <blockquote>
 <p>数据库:<code>dbname_db</code><br>数据表:<code>tbn_info</code></p>
 </blockquote>
-<h3 id="u6267_u884C_SQL__u524D_u786E_u8BA4_u5F71_u54CD_u7684_u6570_u636E_u91CF_u5927_u5C0F"><a href="#u6267_u884C_SQL__u524D_u786E_u8BA4_u5F71_u54CD_u7684_u6570_u636E_u91CF_u5927_u5C0F" class="headerlink" title="执行 SQL 前确认影响的数据量大小"></a>执行 SQL 前确认影响的数据量大小</h3><blockquote>
+<h3 id="执行-SQL-前确认影响的数据量大小"><a href="#执行-SQL-前确认影响的数据量大小" class="headerlink" title="执行 SQL 前确认影响的数据量大小"></a>执行 SQL 前确认影响的数据量大小</h3><blockquote>
 <p><code>update</code> <code>delete</code> <code>alter</code> 之前先确认会影响的数据量大小</p>
 </blockquote>
-<h3 id="u6267_u884C_SQL__u65F6_u91C7_u7528use__u5BF9_u5E94_u7684_u6570_u636E_u5E93"><a href="#u6267_u884C_SQL__u65F6_u91C7_u7528use__u5BF9_u5E94_u7684_u6570_u636E_u5E93" class="headerlink" title="执行 SQL 时采用<code>use</code> 对应的数据库"></a>执行 SQL 时采用<code>use</code> 对应的数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">use</span> dbname_db;</span>          </span><br><span class="line"><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`tbn_info`</span> </span><br><span class="line"><span class="keyword">ADD</span> <span class="string">`allot_time`</span> <span class="built_in">INT</span>( <span class="number">11</span> ) <span class="keyword">UNSIGNED</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0'</span> <span class="keyword">COMMENT</span> <span class="string">'分配时间'</span> , <span class="keyword">ADD</span> <span class="keyword">INDEX</span> ( <span class="string">`allot_time`</span> );</span></span><br></pre></td></tr></table></figure>
-<h3 id="u6267_u884C_SQL__u65F6_u5728SQL_u8BED_u53E5_u4E2D_u6307_u5B9A_u7684_u6570_u636E_u5E93_uFF08_u6781_u7AEF_u60C5_u51B5_u4E0B_u4F1A_u5F71_u54CD_u540C_u6B65_uFF09"><a href="#u6267_u884C_SQL__u65F6_u5728SQL_u8BED_u53E5_u4E2D_u6307_u5B9A_u7684_u6570_u636E_u5E93_uFF08_u6781_u7AEF_u60C5_u51B5_u4E0B_u4F1A_u5F71_u54CD_u540C_u6B65_uFF09" class="headerlink" title="执行 SQL 时在SQL语句中指定的数据库（极端情况下会影响同步）"></a>执行 SQL 时在SQL语句中指定的数据库（极端情况下会影响同步）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> dbname_db.<span class="string">`tbn_info`</span> </span><br><span class="line"><span class="keyword">ADD</span> <span class="string">`allot_time`</span> <span class="built_in">INT</span>( <span class="number">11</span> ) <span class="keyword">UNSIGNED</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0'</span> <span class="keyword">COMMENT</span> <span class="string">'分配时间'</span> , <span class="keyword">ADD</span> <span class="keyword">INDEX</span> ( <span class="string">`allot_time`</span> );</span></span><br></pre></td></tr></table></figure>
+<h3 id="执行-SQL-时采用use-对应的数据库"><a href="#执行-SQL-时采用use-对应的数据库" class="headerlink" title="执行 SQL 时采用use 对应的数据库"></a>执行 SQL 时采用<code>use</code> 对应的数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> dbname_db;          </span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`tbn_info`</span> </span><br><span class="line"><span class="keyword">ADD</span> <span class="string">`allot_time`</span> <span class="built_in">INT</span>( <span class="number">11</span> ) <span class="keyword">UNSIGNED</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0'</span> <span class="keyword">COMMENT</span> <span class="string">'分配时间'</span> , <span class="keyword">ADD</span> <span class="keyword">INDEX</span> ( <span class="string">`allot_time`</span> );</span><br></pre></td></tr></table></figure>
+<h3 id="执行-SQL-时在SQL语句中指定的数据库（极端情况下会影响同步）"><a href="#执行-SQL-时在SQL语句中指定的数据库（极端情况下会影响同步）" class="headerlink" title="执行 SQL 时在SQL语句中指定的数据库（极端情况下会影响同步）"></a>执行 SQL 时在SQL语句中指定的数据库（极端情况下会影响同步）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> dbname_db.<span class="string">`tbn_info`</span> </span><br><span class="line"><span class="keyword">ADD</span> <span class="string">`allot_time`</span> <span class="built_in">INT</span>( <span class="number">11</span> ) <span class="keyword">UNSIGNED</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0'</span> <span class="keyword">COMMENT</span> <span class="string">'分配时间'</span> , <span class="keyword">ADD</span> <span class="keyword">INDEX</span> ( <span class="string">`allot_time`</span> );</span><br></pre></td></tr></table></figure>
 
     
   </div>

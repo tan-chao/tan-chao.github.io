@@ -13,6 +13,7 @@
     <meta name="description" content="作为运维人员，转移数据到其它服务器可能都已经是家常便饭的事儿了。但转移海量小文件时，传统的几种方式就显得心有余而力不足。日常用的工具在传输大量小文件时对I/O和网络资源利用不足，甚至每传一个文件都会花大量的时间来建立网络连接。比如，scp、rsync 等工具就很难满足这种需求。如果使用 nc + tar 的方式，它几乎可以压榨你所有的网络和I/O资源来转移海量小文件数据。">
   
   <meta name="description" content="作为运维人员，转移数据到其它服务器可能都已经是家常便饭的事儿了。但转移海量小文件时，传统的几种方式就显得心有余而力不足。日常用的工具在传输大量小文件时对I/O和网络资源利用不足，甚至每传一个文件都会花大量的时间来建立网络连接。比如，scp、rsync 等工具就很难满足这种需求。如果使用 nc + tar 的方式，它几乎可以压榨你所有的网络和I/O资源来转移海量小文件数据。">
+<meta name="keywords" content="nc,tar">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nc + tar 内网转移海量小文件">
 <meta property="og:url" content="http://blog.tanchao.org/2016/04/01/nc-tar/index.html">
@@ -28,7 +29,7 @@
   
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
   
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 </head>
@@ -80,9 +81,9 @@
 <a id="more"></a>
 <p>nc 接收端的监听方式在 Ubuntu 和 CentOS 中略有不同：</p>
 <p>Ubuntu:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#接收端</span></span><br><span class="line">nc -l -p <span class="number">18888</span> |tar -C /mnt/a/task -xf -</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#发送端</span></span><br><span class="line">tar cf - ./<span class="number">2010</span>-<span class="number">10</span> | nc <span class="number">192.168</span><span class="number">.1</span><span class="number">.111</span> <span class="number">18888</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#接收端</span><br><span class="line">nc -l -p <span class="number">18888</span> |tar -C /mnt/a/task -xf -</span><br><span class="line"></span><br><span class="line">#发送端</span><br><span class="line">tar cf - ./<span class="number">2010</span><span class="number">-10</span> | nc <span class="number">192.168</span><span class="number">.1</span><span class="number">.111</span> <span class="number">18888</span></span><br></pre></td></tr></table></figure>
 <p>CentOS:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#接收端</span></span><br><span class="line">nc -l <span class="number">18888</span> |tar -C /data -xf -</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#接收端</span></span><br><span class="line">tar cf - ./<span class="number">2010</span>-<span class="number">10</span> | nc <span class="number">192.168</span><span class="number">.1</span><span class="number">.111</span> <span class="number">18888</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#接收端</span><br><span class="line">nc -l <span class="number">18888</span> |tar -C /data -xf -</span><br><span class="line"></span><br><span class="line">#接收端</span><br><span class="line">tar cf - ./<span class="number">2010</span><span class="number">-10</span> | nc <span class="number">192.168</span><span class="number">.1</span><span class="number">.111</span> <span class="number">18888</span></span><br></pre></td></tr></table></figure>
 
     
   </div>

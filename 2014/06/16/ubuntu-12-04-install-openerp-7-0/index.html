@@ -13,6 +13,7 @@
     <meta name="description" content="OpenERP是开源的ERP系统，功能丰富，通用性高，扩展性强，它的界面非常漂亮，安装也很简单。OpenERP官方有提供 Ubuntu 软件源，建议系统选择 Ubuntu，这样可以节省不少的时间和工作量。似乎 OpenERP 的开发者是在 Ubuntu 平台下工作的，对 Ubuntu 的支持都好过其它的发行版本，资料也是基于 Ubuntu 来编写的。">
   
   <meta name="description" content="OpenERP是开源的ERP系统，功能丰富，通用性高，扩展性强，它的界面非常漂亮，安装也很简单。OpenERP官方有提供 Ubuntu 软件源，建议系统选择 Ubuntu，这样可以节省不少的时间和工作量。似乎 OpenERP 的开发者是在 Ubuntu 平台下工作的，对 Ubuntu 的支持都好过其它的发行版本，资料也是基于 Ubuntu 来编写的。">
+<meta name="keywords" content="ubuntu,openerp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu 12.04 安装 OpenERP 7.0">
 <meta property="og:url" content="http://blog.tanchao.org/2014/06/16/ubuntu-12-04-install-openerp-7-0/index.html">
@@ -28,7 +29,7 @@
   
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
   
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 </head>
@@ -81,17 +82,17 @@
 <p>1.添加 OpenERP 官方的 Ubuntu 源并刷新列表</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="keyword">echo</span> <span class="string">"deb http://nightly.openerp.com/7.0/nightly/deb/ ./"</span> &gt;&gt; /etc/apt/sources.<span class="keyword">list</span></span><br><span class="line">sudo apt-<span class="built_in">get</span> <span class="keyword">update</span></span><br></pre></td></tr></table></figure>
 <p>2.安装 OpenERP 用使用的 Postgresql 数据库</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="keyword">get</span> install postgresql</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> install postgresql</span><br></pre></td></tr></table></figure>
 <p>3.设置 Postgresql 用户信息</p>
 <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo su postgres</span><br><span class="line"></span><br><span class="line">   createuser openerp</span><br><span class="line">        Shall the new <span class="keyword">role</span> <span class="title">be</span> a superuser? (y/n) y</span><br><span class="line">    psql template1</span><br><span class="line"></span><br><span class="line">     alter <span class="keyword">role</span> <span class="title">openerp</span> with password 'postgres';</span><br></pre></td></tr></table></figure>
 <p>4.安装 OpenERP 需要的 Python 依赖</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="built_in">get</span> install <span class="keyword">python</span>-dateutil <span class="keyword">python</span>-feedparser <span class="keyword">python</span>-gdata <span class="keyword">python</span>-ldap <span class="keyword">python</span>-libxslt1 <span class="keyword">python</span>-lxml <span class="keyword">python</span>-mako <span class="keyword">python</span>-openid <span class="keyword">python</span>-psycopg2 <span class="keyword">python</span>-pybabel <span class="keyword">python</span>-pychart <span class="keyword">python</span>-pydot <span class="keyword">python</span>-pyparsing <span class="keyword">python</span>-reportlab <span class="keyword">python</span>-simplejson <span class="keyword">python</span>-tz <span class="keyword">python</span>-vatnumber <span class="keyword">python</span>-vobject <span class="keyword">python</span>-webdav <span class="keyword">python</span>-werkzeug <span class="keyword">python</span>-xlwt <span class="keyword">python</span>-yaml <span class="keyword">python</span>-zsi</span><br></pre></td></tr></table></figure>
 <p>5.安装 OpenERP</p>
 <p>查看源代码打印帮助</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="keyword">get</span> install openerp</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> install openerp</span><br></pre></td></tr></table></figure>
 <p>6.初始化设置</p>
 <p>启动 OpenERP:</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/openerp <span class="literal">start</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/etc/i</span>nit.d<span class="regexp">/openerp start</span></span><br></pre></td></tr></table></figure>
 <p>这个时候就可以通过浏览器打 <code>http://hostname:8069</code> ，打开之前请确保 iptalbes 防火墙已经开放此端口。</p>
 <p>按 WEB 界面的提示设置便可以轻松完成安装。</p>
 
